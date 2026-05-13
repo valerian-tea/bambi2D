@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(movementInput * Time.deltaTime * 5f);
         if (movementInput.x > 0)
