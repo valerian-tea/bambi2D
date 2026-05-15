@@ -1,17 +1,23 @@
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public float speed = 5f;
+    private Rigidbody2D rb;
     private Vector2 movementInput;
-    Animator animator;
-    SpriteRenderer spriteRenderer;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private PlayerInput input;
+    private bool isMovementEnabled = true;
 
     // Called automatically if Behavior is "Send Messages"
     public void OnMove(InputValue value)
     {
-        movementInput = value.Get<Vector2>();
+        if (isMovementEnabled)
+        {
+            movementInput = value.Get<Vector2>();
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,12 +25,22 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        input = GetComponent<PlayerInput>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate(movementInput * Time.deltaTime * 5f);
+        if (!isMovementEnabled)
+        {
+            animator.SetBool("isWalking", false);
+            rb.linearVelocity = Vector2.zero;
+            movementInput = Vector2.zero;
+            return;
+        }
+
+        rb.linearVelocity = movementInput * speed;
+
         if (movementInput.x > 0)
             spriteRenderer.flipX = false;
         else if (movementInput.x < 0)
@@ -34,5 +50,17 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isWalking", true);
         else
             animator.SetBool("isWalking", false);
+    }
+
+    public void StopMovement()
+    {
+        isMovementEnabled = false;
+        input.DeactivateInput();
+    }
+
+    public void StartMovement()
+    {
+        isMovementEnabled = true;
+        input.ActivateInput();
     }
 }
