@@ -1,15 +1,32 @@
 ﻿title: Start
 ---
-???: …Psst! Over here!
-// <<player looks around>>
-???: Warmer!
-// <<will o wisps light up, guiding the way>>
-// <<player moves right, stops within distance of a faintly glowing skull>>
+<<once>>
+    ???: …Psst! Over here!
+<<endonce>>
+===
+
+title: Next
+---
+<<once>>
+    ???: Warmer!
+<<endonce>>
+===
+
+title: Dig
+---
+???: Beneath you! See that dark patch of earth? Dig there to free me!
+[i] Press and hold E while standing on the dark patch to dig! [/i]
+// wishlist: make this linger til user finishes digging
+===
+
+title: AfterDig
+---
+???: Ah, much better. No more worm friends for me. You have my thanks, child.
 ???: What in the world is one of my descendants doing here all lost and alone?
-???: My child, who are you looking for? Who have you… misplaced?
+???: Who are you looking for? Who have you… misplaced?
 // <<player whines>>
 ???: …I see. 
-???: If you lend me a hand- er, paw, I can help you find your person again.
+???: If you lend me a hand- er, paw, I can help you find [i]that human[/i] again.
 // <<player wags tail>>
 ???: Excellent. Now come closer and make contact with this vessel of mine.
 // <<player places paw on skull>>

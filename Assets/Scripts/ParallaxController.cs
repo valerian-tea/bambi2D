@@ -2,27 +2,18 @@ using UnityEngine;
 
 public class ParallaxController : MonoBehaviour
 {
-    private float length,
-        startpos;
-    public GameObject cam;
-    public float parallaxEffect;
+    public float scrollSpeed = 0.5f;
+    private MeshRenderer meshRenderer;
 
     void Start()
     {
-        startpos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     void Update()
     {
-        float temp = cam.transform.position.x * (1 - parallaxEffect);
-        float dist = cam.transform.position.x * parallaxEffect;
-
-        transform.position = new Vector2(startpos + dist, transform.position.y);
-
-        if (temp > startpos + length)
-            startpos += length;
-        else if (temp < startpos - length)
-            startpos -= length;
+        // Increment the X offset based on time and speed
+        Vector2 offset = new Vector2(Time.time * scrollSpeed, 0);
+        meshRenderer.material.mainTextureOffset = offset;
     }
 }

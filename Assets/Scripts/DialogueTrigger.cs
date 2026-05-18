@@ -4,8 +4,17 @@ using Yarn.Unity;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueRunner dialogueRunner;
+    private DialogueRunner dialogueRunner;
     public string dialogueNode;
+
+    private void Start()
+    {
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        if (dialogueRunner == null)
+        {
+            Debug.LogError("DialogueRunner not found in the scene.");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,13 +24,15 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    void OpenDialogue()
+    public void OpenDialogue()
     {
         dialogueRunner.StartDialogue(dialogueNode);
     }
 
-    void CloseDialogue()
+    [YarnCommand("CloseDialogue")]
+    public void CloseDialogue()
     {
-        dialogueRunner.Stop();
+        // dialogueRunner.Stop();
+        this.gameObject.SetActive(false);
     }
 }

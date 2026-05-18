@@ -3,24 +3,22 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 15f;
     private Rigidbody2D rb;
-    private Vector2 movementInput;
+    private float movementInput;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private PlayerInput input;
     private bool isMovementEnabled = true;
 
-    // Called automatically if Behavior is "Send Messages"
     public void OnMove(InputValue value)
     {
         if (isMovementEnabled)
         {
-            movementInput = value.Get<Vector2>();
+            movementInput = value.Get<Vector2>().x;
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -35,18 +33,18 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isWalking", false);
             rb.linearVelocity = Vector2.zero;
-            movementInput = Vector2.zero;
+            movementInput = 0f;
             return;
         }
 
-        rb.linearVelocity = movementInput * speed;
+        rb.linearVelocityX = movementInput * speed;
 
-        if (movementInput.x > 0)
+        if (movementInput > 0)
             spriteRenderer.flipX = false;
-        else if (movementInput.x < 0)
+        else if (movementInput < 0)
             spriteRenderer.flipX = true;
 
-        if (movementInput.magnitude > 0)
+        if (Mathf.Abs(movementInput) != 0)
             animator.SetBool("isWalking", true);
         else
             animator.SetBool("isWalking", false);
