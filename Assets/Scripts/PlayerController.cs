@@ -4,20 +4,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 15f;
+    public float jumpForce = 15f;
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
     private Rigidbody2D rb;
-    private float movementInput;
+    private float movementInputX;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private PlayerInput input;
     private bool isMovementEnabled = true;
 
-    public void OnMove(InputValue value)
-    {
-        if (isMovementEnabled)
-        {
-            movementInput = value.Get<Vector2>().x;
-        }
-    }
+    private bool isGrounded;
 
     void Start()
     {
@@ -27,28 +25,61 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    public void OnMove(InputValue value)
+    {
+        movementInputX = value.Get<Vector2>().x;
+    }
+
+    public void OnJump(InputValue value)
+    {
+        if (isGrounded)
+        {
+            Jump();
+        }
+    }
+
+    void Jump()
+    {
+        rb.linearVelocityY = jumpForce;
+        animator.SetBool("isJumping", true);
+    }
+
     void FixedUpdate()
     {
         if (!isMovementEnabled)
         {
             animator.SetBool("isWalking", false);
+            animator.SetBool("isJumping", false);
             rb.linearVelocity = Vector2.zero;
-            movementInput = 0f;
+            movementInputX = 0f;
             return;
         }
 
-        rb.linearVelocityX = movementInput * speed;
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        Debug.Log($"Is Grounded: {isGrounded}");
 
-        if (movementInput > 0)
+        rb.linearVelocityX = movementInputX * speed;
+
+        if (movementInputX > 0)
             spriteRenderer.flipX = false;
-        else if (movementInput < 0)
+        else if (movementInputX < 0)
             spriteRenderer.flipX = true;
 
-        if (Mathf.Abs(movementInput) != 0)
-            animator.SetBool("isWalking", true);
-        else
-            animator.SetBool("isWalking", false);
+        if (isGrounded)
+        {
+            animator.SetBool("isJumping", false);
+
+            if (Mathf.Abs(movementInputX) != 0)
+                animator.SetBool("isWalking", true);
+            else
+                animator.SetBool("isWalking", false);
+        }
     }
+
+    // void onTriggerStay2D(Collider2D collision)
+    // {
+    //     isGrounded = true;
+    // }
 
     public void StopMovement()
     {
