@@ -48,17 +48,20 @@ public class PlayerController : MonoBehaviour
     {
         if (!isMovementEnabled)
         {
+            rb.linearVelocity = Vector2.zero;
+            animator.SetFloat("xVelocity", 0);
+            animator.SetFloat("yVelocity", 0);
             animator.SetBool("isWalking", false);
             animator.SetBool("isJumping", false);
-            rb.linearVelocity = Vector2.zero;
             movementInputX = 0f;
             return;
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        Debug.Log($"Is Grounded: {isGrounded}");
 
         rb.linearVelocityX = movementInputX * speed;
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocityX));
+        animator.SetFloat("yVelocity", rb.linearVelocityY);
 
         if (movementInputX > 0)
             spriteRenderer.flipX = false;
@@ -76,11 +79,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // void onTriggerStay2D(Collider2D collision)
-    // {
-    //     isGrounded = true;
-    // }
-
     public void StopMovement()
     {
         isMovementEnabled = false;
@@ -91,5 +89,10 @@ public class PlayerController : MonoBehaviour
     {
         isMovementEnabled = true;
         input.ActivateInput();
+    }
+
+    public void WagTail()
+    {
+        animator.SetTrigger("isWagging");
     }
 }
