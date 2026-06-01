@@ -15,19 +15,22 @@ title: Next
 title: Dig
 ---
 ???: Beneath you! See that dark patch of earth? Dig there to free me!
-[i] Press and hold E while standing on the dark patch to dig! [/i]
-// wishlist: make this linger til user finishes digging
+<<enable_text TriggerCommands>>
 ===
 
 title: AfterDig
 ---
+<<set_emotion Dog neutral>>
 ???: Ah, much better. No more worm friends for me. You have my thanks, child.
 ???: What in the world is one of my descendants doing here all lost and alone?
 ???: Who are you looking for? Who have you… misplaced?
-// <<player whines>>
+<<set_emotion Dog sad>>
+<<wait 2.0>>
 ???: …I see. 
+<<set_emotion Dog neutral>>
 ???: If you lend me a hand- er, paw, I can help you find [i]that human[/i] again.
-// <<player wags tail>>
+<<set_emotion Dog happy>>
+<<wait 2.0>>
 ???: Excellent. Now come closer and make contact with this vessel of mine.
 // <<player places paw on skull>>
 // <<skull becomes a collar that attaches to player>>

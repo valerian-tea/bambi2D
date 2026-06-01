@@ -2,10 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueCommands : MonoBehaviour
 {
     private DialogueRunner dialogueRunner;
-    public string dialogueNode;
 
     private void Start()
     {
@@ -16,15 +15,7 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            OpenDialogue();
-        }
-    }
-
-    public void OpenDialogue()
+    public void OpenDialogue(string dialogueNode)
     {
         dialogueRunner.StartDialogue(dialogueNode);
     }

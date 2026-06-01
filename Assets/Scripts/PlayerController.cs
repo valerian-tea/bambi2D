@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Yarn.Unity;
 
 public class PlayerController : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         rb.linearVelocityY = jumpForce;
-        animator.SetBool("isJumping", true);
+        animator.SetTrigger("isJumping");
     }
 
     void FixedUpdate()
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            animator.SetBool("isJumping", false);
+            // animator.SetBool("isJumping", false);
 
             if (Mathf.Abs(movementInputX) != 0)
                 animator.SetBool("isWalking", true);
@@ -89,10 +90,5 @@ public class PlayerController : MonoBehaviour
     {
         isMovementEnabled = true;
         input.ActivateInput();
-    }
-
-    public void WagTail()
-    {
-        animator.SetTrigger("isWagging");
     }
 }
