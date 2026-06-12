@@ -6,9 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 15f;
     public float jumpForce = 15f;
-    public Transform groundCheck;
+
+    [SerializeField]
+    private Transform groundCheck;
+
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
+
     private Rigidbody2D rb;
     private float movementInputX;
     private Animator animator;
@@ -71,8 +75,6 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            // animator.SetBool("isJumping", false);
-
             if (Mathf.Abs(movementInputX) != 0)
                 animator.SetBool("isWalking", true);
             else
@@ -90,5 +92,14 @@ public class PlayerController : MonoBehaviour
     {
         isMovementEnabled = true;
         input.ActivateInput();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
     }
 }

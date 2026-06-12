@@ -4,25 +4,17 @@ using Yarn.Unity;
 
 public class InstructionCommands : MonoBehaviour
 {
-    public GameObject textBox;
-
-    private void Start()
-    {
-        if (textBox == null)
-        {
-            Debug.LogError("TextBox not found in the scene.");
-        }
-    }
-
     [YarnCommand("enable_text")]
-    public void EnableTextBox()
+    public void EnableTextBox(CanvasGroup canvasGroup)
     {
-        textBox.SetActive(true);
+        canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
     }
 
     [YarnCommand("disable_text")]
-    public void DisableTextBox()
+    public void DisableTextBox(CanvasGroup canvasGroup)
     {
-        textBox.SetActive(false);
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
     }
 }

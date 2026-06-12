@@ -14,27 +14,46 @@ title: Next
 
 title: Dig
 ---
-???: Beneath you! See that dark patch of earth? Dig there to free me!
-<<enable_text TriggerCommands>>
+<<once>>
+    ???: Beneath you! See that dark patch of earth? Dig there to free me!
+    <<enable_text TriggerCommands DigInstruction>>
+<<endonce>>
 ===
 
 title: AfterDig
 ---
-<<set_emotion Dog neutral>>
-???: Ah, much better. No more worm friends for me. You have my thanks, child.
-???: What in the world is one of my descendants doing here all lost and alone?
-???: Who are you looking for? Who have you… misplaced?
-<<set_emotion Dog sad>>
-<<wait 2.0>>
-???: …I see. 
-<<set_emotion Dog neutral>>
-???: If you lend me a hand- er, paw, I can help you find [i]that human[/i] again.
-<<set_emotion Dog happy>>
-<<wait 2.0>>
-???: Excellent. Now come closer and make contact with this vessel of mine.
-// <<player places paw on skull>>
+<<once>>
+    <<set_action Dog neutral>>
+    ???: Ah, at last a friendly face. I was getting tired of talking to worms.
+    ???: What in the world is one of my descendants doing here all alone?
+    ???: Who are you looking for? Who have you… lost?
+    <<set_action Dog sad>>
+    <<wait 2.0>>
+    ???: …I see. 
+    ???: If you lend me a hand- er, paw, I can help you find [i]that human[/i] again.
+    <<set_action Dog wag>>
+    <<wait 2.0>>
+    ???: Excellent. Now come closer and make contact with this vessel of mine.
+    <<enable_text TriggerCommands PawInstruction>>
+<<endonce>>
+===
+title: AfterPaw
+---
 // <<skull becomes a collar that attaches to player>>
 ???: Comfy? Good. Buckle in, we have much to do.
-// <<player plods forward>>
-// <<fade to black>>
+// // <<player plods forward>>
+// // <<fade to black>>
+===
+
+title: Start2
+---
+???: First things first, we need to unlock my powers.
+???: My shell, the vessel that holds my powers, is shattered in four pieces. According to my sources, the first is located in the stone temple. 
+???: But you will have to be careful.
+// <<guard paces around>>
+???: These guards have weapons, but they're dumb as rocks. Sneak past them or hide.
+===
+title: Next2
+---
+???: Excellent work. Use your surroundings to your advantage to sneak in.
 ===

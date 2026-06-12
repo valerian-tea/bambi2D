@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,8 +21,8 @@ public class Digger : MonoBehaviour
     {
         if (currentDigSpot != null)
         {
-            currentDigSpot.Dig();
-            animator.SetTrigger("isDigging");
+            animator.SetTrigger("dig");
+            StartCoroutine(currentDigSpot.Dig());
         }
     }
 }

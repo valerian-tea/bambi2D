@@ -1,0 +1,44 @@
+﻿title: SkullIntro
+---
+???: Who goes there?
+// <green flames burst up>
+???: Brave hero, have you come for the ultimate weapon to slay a demon?
+// <flames morph into knight battle scene>
+???: Or for the antidote to an incurable disease?
+// <flames morph into poison and medicine>
+???: Or perhaps, are you the dashing savior here to rescue me from my chains?
+// <flames morph into seductive lady>
+???: Tell me, what are you here for?
+// <spotlight on dog>
+???: ...
+???: Ah. Not another hopeless one. 
+// <flame recedes into bored looking skull>
+I suggest you turn around, small one. This is no place to wander alone.
+<<wait 2.0>>
+... // <neutral>
+... //<exasperated>
+(Can it understand me?)
+(Or is it feigning ignorance?) //more exasperated
+// <optional: dog itch>
+(Gah! A touch nut to crack, I see). //more exasperated/shocked
+Out with it! Do you have a wish or not? //angry
+// <dog bark>
+Oh? //interested / eyes light up
+I suppose it is odd for a lowly creature like yourself to end up here, all alone.
+What are you searching for, small one?
+What have you lost? //eyes narrow
+// <dog sad>
+Well, worry not. Whatever it is, I can help you find it.
+As soon as you help me with one small favor, that is.
+// <dog normal>
+<<jump FetchBone>>
+===
+
+title: FetchBone
+---
+Er, so--I need you to fetch my bones.
+Long ago, certain enemies of mine scattered my bones all over this domain.
+I've managed to recoup most of them over the years, but a few have remained in the clutches of pesky tomb raiders, just out of my reach. //exasperated
+Find the missing bones and return them to me.
+// <flame projection of bones>
+===

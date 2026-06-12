@@ -5,20 +5,39 @@ using Yarn.Unity;
 public class AnimatorController : MonoBehaviour
 {
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    [YarnCommand("set_emotion")]
-    public void SetEmotion(string emotion)
+    public void FaceRight()
     {
-        if (emotion == "sad")
+        spriteRenderer.flipX = false;
+    }
+
+    public void FaceLeft()
+    {
+        spriteRenderer.flipX = true;
+    }
+
+    [YarnCommand("set_action")]
+    public void SetAction(string action)
+    {
+        if (action == "sad")
             animator.SetBool("isSad", true);
-        else if (emotion == "happy")
-            animator.SetTrigger("isWagging");
-        else if (emotion == "neutral")
+        else if (action == "wag")
+        {
+            animator.SetTrigger("wag");
+            animator.SetBool("isSad", false);
+        }
+        else if (action == "paw")
+        {
+            animator.SetTrigger("paw");
+        }
+        else if (action == "neutral")
             animator.SetBool("isSad", false);
     }
 
