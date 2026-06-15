@@ -23,7 +23,7 @@ public class DogAnimatorController : MonoBehaviour
         spriteRenderer.flipX = true;
     }
 
-    [YarnCommand("set_action")]
+    [YarnCommand("set_dog_animation")]
     public void SetAction(string action)
     {
         if (action == "sad")

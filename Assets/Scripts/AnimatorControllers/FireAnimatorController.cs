@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Yarn.Unity;
 
-public class SkullAnimatorController : MonoBehaviour
+public class FireAnimatorController : MonoBehaviour
 {
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -23,13 +23,12 @@ public class SkullAnimatorController : MonoBehaviour
         spriteRenderer.flipX = true;
     }
 
-    [YarnCommand("move_skull")]
-    public void MoveSprite(GameObject destination)
+    public void MoveSprite(Vector2 position)
     {
-        transform.position = destination.transform.position;
+        transform.position = position;
     }
 
-    [YarnCommand("set_skull_animation")]
+    [YarnCommand("set_fire_animation")]
     public void SetAction(string action)
     {
         animator.SetTrigger(action);
