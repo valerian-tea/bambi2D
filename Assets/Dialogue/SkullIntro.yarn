@@ -1,21 +1,31 @@
 ﻿title: SkullIntro
 ---
 ???: Who goes there?
-// <green flames burst up>
+// <<set_action_fire Skull fireDance>>
+// <<wait 2.0>>
+<<set_action_fire Skull fireGrow>>
+<<set_action_fire Skull fireFall>>
+<<set_action_fire Skull fireGrow>>
+<<set_action_fire Skull fireWide>>
+<<set_action_fire Skull fireKnight>>
+<<wait 1.0>>
 ???: Brave hero, have you come for the ultimate weapon to slay a demon?
-// <flames morph into knight battle scene>
+<<set_action_fire Skull fireMed>>
+<<wait 1.0>>
 ???: Or for the antidote to an incurable disease?
-// <flames morph into poison and medicine>
+<<set_action_fire Skull fireLady>>
+<<wait 1.0>>
 ???: Or perhaps, are you the dashing savior here to rescue me from my chains?
-// <flames morph into seductive lady>
 ???: Tell me, what are you here for?
-// <spotlight on dog>
+<<set_light_intensity SpotLight 0.5>>
+<<set_light_intensity GlobalLight 1.0>>
 ???: ...
 ???: Ah. Not another hopeless one. 
 // <flame recedes into bored looking skull>
 I suggest you turn around, small one. This is no place to wander alone.
-<<wait 2.0>>
+<<wait 1.0>>
 ... // <neutral>
+<<wait 1.0>>
 ... //<exasperated>
 (Can it understand me?)
 (Or is it feigning ignorance?) //more exasperated

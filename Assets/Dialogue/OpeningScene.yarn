@@ -15,8 +15,7 @@ title: Next
 title: Dig
 ---
 <<once>>
-    ???: Beneath you! See that dark patch of earth? Dig there to free me!
-    <<enable_text TriggerCommands DigInstruction>>
+    <<enable_text Commands DigInstruction>>
 <<endonce>>
 ===
 
