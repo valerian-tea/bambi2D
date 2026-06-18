@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         rb.linearVelocityY = jumpForce;
-        animator.SetTrigger("isJumping");
+        animator.SetTrigger("jump");
     }
 
     void FixedUpdate()
@@ -57,12 +57,12 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("xVelocity", 0);
             animator.SetFloat("yVelocity", 0);
             animator.SetBool("isWalking", false);
-            animator.SetBool("isJumping", false);
             movementInputX = 0f;
             return;
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        animator.SetBool("isGrounded", isGrounded);
 
         rb.linearVelocityX = movementInputX * speed;
         animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocityX));
