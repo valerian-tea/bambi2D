@@ -12,7 +12,7 @@ title: SkullIntro
     <<set_fire_animation Fire grow>>
     <<set_fire_animation Fire fall>>
     <<set_fire_animation Fire grow>>
-    <<wait 1.0>>
+    <<wait 0.5>>
     <<set_fire_animation Fire knight>>
     <<wait 2.0>>
     ???: Brave hero, have you come for the ultimate weapon to slay a demon?
@@ -24,6 +24,7 @@ title: SkullIntro
     ???: Or perhaps, are you the dashing savior here to rescue me from my chains?
     ???: Tell me, what are you here for?
     // <<set_light_intensity SpotLight 0.5>>
+    <<fade_light GlobalLight 1.0>>
     <<fade_light PlayerLight 1.0>>
     ???: ...
     ???: Ah. Not another hopeless one. 
@@ -55,9 +56,11 @@ title: SkullIntro
     ???: What have you lost?
     <<set_dog_animation Dog sad>>
     <<wait 1.0>>
+    ???: ...
     <<set_skull_animation Skull neutral>>
-    <<set_dog_animation Dog neutral>>
     ???: Well, worry not. Whatever it is, I can help you find it.
+    <<set_dog_animation Dog wag>>
+    <<wait 1.0>>
     ???: As soon as you help me with one small favor, that is.
 <<endonce>>
 <<jump FetchBone>>
@@ -67,18 +70,35 @@ title: FetchBone
 ---
 <<once>>
     ???: Er, so--I need you to fetch my bones.
-    //optional: sound effect
+    //optional: sound effect or dog cock head
     <<wait 1.0>>
     <<enable_UI Commands FireMap>>
     ???: Long ago, certain enemies of mine scattered my bones all over this domain.
     ???: I've managed to recoup most of them over the years, but a few have remained in the clutches of pesky tomb raiders, just out of my reach. //exasperated
     ???: Find the missing bones and return them to me.
     <<disable_UI Commands FireMap>>
-    <<disable_collider Scene1_Bound_L>>
+    <<disable_collider Scene1_BoundL>>
 <<else>>
     <<enable_UI Commands FireMap>>
-    ???: Find the missing bones and return them to me. Only then can I help you on your journey.
+    ???: Find the missing bones and return them to me. 
+    [i] Remaining bones: Phalange, Horn, and Vertebra.[/i]
+    ???: They're small, so they should be doable for a being of your... stature.
     <<disable_UI Commands FireMap>>
-    <<disable_collider Scene1_Bound_L>>
+    <<disable_collider Scene1_BoundL>>
+<<endonce>>
+===
+
+title: Bone1Start
+---
+<<once>>
+    ???: See those holes?
+    ???: One of them has my phalange. Dig to unearth it.
+<<endonce>>
+===
+
+title: Bone1After
+---
+<<once>>
+    ???: Well done! Now take it back to the pit.
 <<endonce>>
 ===

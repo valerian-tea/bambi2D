@@ -14,49 +14,49 @@ public class Digger : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // public void OnLeftDig(InputValue value)
-    // {
-    //     Debug.Log("Interact button pressed");
-    //     Debug.Log(value);
-    //     Debug.Log(this.transform.position);
+    public void OnLeftDig(InputValue value)
+    {
+        Vector3Int digCoordinate = new Vector3Int(
+            Mathf.FloorToInt(this.transform.position.x - 1),
+            Mathf.FloorToInt(this.transform.position.y),
+            0
+        );
 
-    //     Vector3Int digCoordinate = groundTilemap.WorldToCell(this.transform.position);
+        animator.SetTrigger("dig");
+        StartCoroutine(DigAtWorldPosition(digCoordinate));
+    }
 
-    //     animator.SetTrigger("dig");
-    //     StartCoroutine(Dig());
-    // }
+    public void OnRightDig(InputValue value)
+    {
+        Vector3Int digCoordinate = new Vector3Int(
+            Mathf.FloorToInt(this.transform.position.x + 1),
+            Mathf.FloorToInt(this.transform.position.y),
+            0
+        );
 
-    // public void OnRightDig(InputValue value)
-    // {
-    //     Debug.Log("Interact button pressed");
-    //     Debug.Log(value);
-    //     Debug.Log(this.transform.position);
+        animator.SetTrigger("dig");
+        StartCoroutine(DigAtWorldPosition(digCoordinate));
+    }
 
-    //     Vector3Int digCoordinate = groundTilemap.WorldToCell(this.transform.position);
+    public void OnUpDig(InputValue value)
+    {
+        Vector3Int digCoordinate = new Vector3Int(
+            Mathf.FloorToInt(this.transform.position.x),
+            Mathf.FloorToInt(this.transform.position.y + 1),
+            0
+        );
 
-    //     animator.SetTrigger("dig");
-    //     StartCoroutine(Dig());
-    // }
-
-    // public void OnUpDig(InputValue value)
-    // {
-    //     Vector3Int digCoordinate = groundTilemap.WorldToCell(this.transform.position);
-
-    //     animator.SetTrigger("dig");
-    //     StartCoroutine(currentDigSpot.Dig());
-    // }
+        animator.SetTrigger("dig");
+        StartCoroutine(DigAtWorldPosition(digCoordinate));
+    }
 
     public void OnDownDig(InputValue value)
     {
-        Debug.Log("Interact button pressed");
-        Debug.Log(this.transform.position);
-
         Vector3Int digCoordinate = new Vector3Int(
             Mathf.FloorToInt(this.transform.position.x),
             Mathf.FloorToInt(this.transform.position.y - 1),
             0
         );
-        Debug.Log(digCoordinate);
 
         animator.SetTrigger("dig");
         StartCoroutine(DigAtWorldPosition(digCoordinate));
