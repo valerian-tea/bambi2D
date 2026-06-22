@@ -8,7 +8,7 @@ public class LightingSignals : MonoBehaviour
     private Coroutine fadeCoroutine;
 
     [SerializeField]
-    private float fadeDuration = 3.0f;
+    private float fadeDuration = 2.0f;
     private Light2D light2D;
 
     void Start()

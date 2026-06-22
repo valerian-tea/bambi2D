@@ -9,83 +9,105 @@ title: SkullIntro
 ---
 <<once>>
     ???: Who goes there?
-    <<set_fire_animation Fire grow>>
-    <<set_fire_animation Fire fall>>
-    <<set_fire_animation Fire grow>>
-    <<wait 0.5>>
-    <<set_fire_animation Fire knight>>
-    <<wait 2.0>>
-    ???: Brave hero, have you come for the ultimate weapon to slay a demon?
-    <<set_fire_animation Fire med>>
-    <<wait 2.0>>
-    ???: Or for the antidote to an incurable disease?
-    <<set_fire_animation Fire lady>>
-    <<wait 2.0>>
-    ???: Or perhaps, are you the dashing savior here to rescue me from my chains?
-    ???: Tell me, what are you here for?
-    // <<set_light_intensity SpotLight 0.5>>
-    <<fade_light GlobalLight 1.0>>
-    <<fade_light PlayerLight 1.0>>
-    ???: ...
-    ???: Ah. Not another hopeless one. 
-    <<set_light_intensity SpotLight 0>>
-    <<set_fire_animation Fire ebb>>
-    <<wait 0.5>>
-    <<show_skull Skull>>
-    <<fade_light SkullLight 1>>
-    I suggest you turn back, small one. This is no place to wander alone.
-    <<wait 1.0>>
-    <<set_skull_animation Skull bored>>
-    ...
-    <<wait 1.0>>
-    <<set_skull_animation Skull exasp>>
-    ... 
-    (Can it understand me?)
-    (Or is it feigning ignorance?)
-    // <optional: dog itch>
-    <<set_skull_animation Skull angry>>
-    (Gah! A touch nut to crack, I see).
-    ???: Out with it! Do you have a wish or not?
-    <<set_dog_animation Dog bark>>
-    <<wait 1.0>>
-    <<set_skull_animation Skull neutral>>
-    ???: Oh? 
-    ???: I suppose it is odd for a lowly creature like yourself to end up here, all alone.
-    ???: What are you searching for, small one?
-    <<set_skull_animation Skull bored>>
-    ???: What have you lost?
-    <<set_dog_animation Dog sad>>
-    <<wait 1.0>>
-    ???: ...
-    <<set_skull_animation Skull neutral>>
-    ???: Well, worry not. Whatever it is, I can help you find it.
-    <<set_dog_animation Dog wag>>
-    <<wait 1.0>>
-    ???: As soon as you help me with one small favor, that is.
+    // <<show_fire Fire>>
+    // <<set_fire_animation Fire grow>>
+    // <<set_fire_animation Fire fall>>
+    // <<set_fire_animation Fire grow>>
+    // <<wait 0.5>>
+    // <<set_fire_animation Fire knight>>
+    // <<wait 2.0>>
+    // ???: Brave hero, have you come for the ultimate weapon to slay a demon?
+    // <<set_fire_animation Fire med>>
+    // <<wait 2.0>>
+    // ???: Or for the antidote to an incurable disease?
+    // <<set_fire_animation Fire lady>>
+    // <<wait 2.0>>
+    // ???: Or perhaps, are you the dashing savior here to rescue me from my chains?
+    // ???: Tell me, what are you here for?
+    // // <<set_light_intensity SpotLight 0.5>>
+    // <<fade_light GlobalLight 1.0>>
+    // <<fade_light PlayerLight 1.0>>
+    // ???: ...
+    // ???: Ah. Not another hopeless one. 
+    // <<hide_fire Fire>>
+    // <<show_skull Skull>>
+    // <<fade_light SkullLight 1>>
+    // I suggest you turn back, small one. This is no place to wander alone.
+    // <<wait 1.0>>
+    // <<set_skull_animation Skull bored>>
+    // ...
+    // <<wait 1.0>>
+    // <<set_skull_animation Skull exasp>>
+    // ... 
+    // (Can it understand me?)
+    // (Or is it feigning ignorance?)
+    // // <optional: dog itch>
+    // <<set_skull_animation Skull angry>>
+    // (Gah! A touch nut to crack, I see).
+    // ???: Out with it! Do you have a wish or not?
+    // <<set_dog_animation Dog bark>>
+    // <<wait 1.0>>
+    // <<set_skull_animation Skull neutral>>
+    // ???: Oh? 
+    // ???: I suppose it is odd for a lowly creature like yourself to end up here, all alone.
+    // ???: What are you searching for, small one?
+    // <<set_skull_animation Skull bored>>
+    // ???: What have you lost?
+    // <<set_dog_animation Dog sad>>
+    // <<wait 1.0>>
+    // ???: ...
+    // <<set_skull_animation Skull neutral>>
+    // ???: Well, worry not. Whatever it is, I can help you find it.
+    // <<set_dog_animation Dog wag>>
+    // <<wait 1.0>>
+    // ???: As soon as you help me with one small favor, that is.
+    // ???: Come with me.
+    <<play_timeline CutsceneTrigger2>>
 <<endonce>>
-<<jump FetchBone>>
 ===
 
 title: FetchBone
 ---
 <<once>>
+    <<declare $numBones =  3>>
+    <<declare $hasBone = false>>
     ???: Er, so--I need you to fetch my bones.
     //optional: sound effect or dog cock head
     <<wait 1.0>>
     <<enable_UI Commands FireMap>>
     ???: Long ago, certain enemies of mine scattered my bones all over this domain.
     ???: I've managed to recoup most of them over the years, but a few have remained in the clutches of pesky tomb raiders, just out of my reach. //exasperated
-    ???: Find the missing bones and return them to me.
+    ???: Find my missing bones and drop them in this pit.
+    ???: They're some of my smallest bones, so they should be doable for a being of your... stature.
     <<disable_UI Commands FireMap>>
-    <<disable_collider Scene1_BoundL>>
+<<endonce>>
+<<disable_collider Scene1_BoundL>>
+// <<bound_to_trigger Scene3_BoundR>>
+===
+
+title: FoundBone
+---
+???: I feel my power returning...
+<<jump BonesMap>>
+===
+
+title: BonesMap
+---
+<<if $hasBone>>
+    Press C to drop the bone.
 <<else>>
     <<enable_UI Commands FireMap>>
-    ???: Find the missing bones and return them to me. 
-    [i] Remaining bones: Phalange, Horn, and Vertebra.[/i]
-    ???: They're small, so they should be doable for a being of your... stature.
+    <<if $numBones == 3>>
+        3 bones left to find.
+    <<elseif $numBones == 2>>
+        2 bones left to find.
+    <<else>>
+        1 bone left to find.
+    <<endif>>
     <<disable_UI Commands FireMap>>
-    <<disable_collider Scene1_BoundL>>
-<<endonce>>
+<<endif>>
+
+
 ===
 
 title: Bone1Start
@@ -100,5 +122,7 @@ title: Bone1After
 ---
 <<once>>
     ???: Well done! Now take it back to the pit.
+    <<set $numBones to $numBones - 1>>
+    <<set $hasBone to true>>
 <<endonce>>
 ===

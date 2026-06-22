@@ -1,48 +1,100 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Yarn.Unity;
 
 public class PickupObject : MonoBehaviour
 {
-    public Vector3 mouthOffset = new Vector3(0.3f, 0f, 0f);
-    public Transform playerMouth;
-    public SpriteRenderer playerSprite;
-    private SpriteRenderer itemSprite;
-    private Collider2D collider2D;
-    private bool isCarried = false;
+    public Transform mouth;
+    public Vector3 mouthOffset = new Vector3(0.3f, -0.12f, 0f);
+    public float pickupRadius = 0.5f;
+    public LayerMask pickupLayer;
+    public VariableStorageBehaviour variableStorage;
+    private GameObject carriedObject;
+    private Collider2D carriedCollider;
+    private SpriteRenderer carriedSprite;
+    private Rigidbody2D carriedRb;
+    private PlayerInput input;
+    private SpriteRenderer playerSprite;
 
     void Start()
     {
-        collider2D = GetComponent<Collider2D>();
-        itemSprite = GetComponent<SpriteRenderer>();
+        playerSprite = GetComponent<SpriteRenderer>();
+        input = GetComponent<PlayerInput>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void FixedUpdate()
     {
-        if (other.CompareTag("Player"))
+        if (carriedObject != null)
         {
-            Equip();
+            Vector3 currentOffset = mouthOffset;
+            if (playerSprite.flipX)
+                currentOffset.x *= -1f;
+
+            carriedObject.transform.SetParent(mouth, worldPositionStays: false);
+            carriedObject.transform.localPosition = currentOffset;
+            carriedSprite.flipX = playerSprite.flipX;
         }
     }
 
-    public void Equip()
+    public void OnCrouch(InputValue value)
     {
-        isCarried = true;
+        if (carriedObject == null)
+            TryPickup();
+        else
+            Drop();
     }
 
-    void Update()
+    private void TryPickup()
     {
-        if (isCarried)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            transform.position,
+            pickupRadius,
+            pickupLayer
+        );
+
+        Debug.Log($"Found {hits.Length} colliders in pickup radius");
+        Collider2D best = null;
+        float bestDist = float.MaxValue;
+        foreach (var c in hits)
         {
-            collider2D.enabled = false;
-            itemSprite.flipX = playerSprite.flipX;
-            Vector3 currentOffset = mouthOffset;
-
-            if (playerSprite.flipX)
+            float d = Vector2.Distance(mouth.position, c.transform.position);
+            if (d < bestDist)
             {
-                currentOffset.x *= -1f;
+                bestDist = d;
+                best = c;
             }
+        }
 
-            transform.SetParent(playerMouth);
-            transform.localPosition = currentOffset;
+        if (best == null)
+            return;
+
+        carriedObject = best.gameObject;
+        carriedCollider = carriedObject.GetComponent<Collider2D>();
+        carriedSprite = carriedObject.GetComponent<SpriteRenderer>();
+        carriedObject.transform.SetParent(mouth, worldPositionStays: false);
+        Vector3 currentOffset = mouthOffset;
+        if (playerSprite != null && playerSprite.flipX)
+            currentOffset.x *= -1f;
+        carriedObject.transform.localPosition = currentOffset;
+    }
+
+    private void Drop()
+    {
+        Destroy(carriedObject);
+
+        if (variableStorage.TryGetValue("$hasBone", out bool hasBone) && hasBone)
+        {
+            variableStorage.SetValue("$hasBone", false);
+            Debug.Log("Dropped the bone and updated $hasBone to 0.");
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (mouth != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(mouth.position, pickupRadius);
         }
     }
 }

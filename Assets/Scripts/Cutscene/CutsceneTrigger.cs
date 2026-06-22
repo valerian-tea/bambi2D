@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using Yarn.Unity;
 
 public class CutsceneTrigger : MonoBehaviour
 {
@@ -13,5 +14,11 @@ public class CutsceneTrigger : MonoBehaviour
             director.Play();
             gameObject.SetActive(false);
         }
+    }
+
+    [YarnCommand("play_timeline")]
+    public void PlayTimeline()
+    {
+        director.Play();
     }
 }

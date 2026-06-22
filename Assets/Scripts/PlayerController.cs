@@ -64,7 +64,11 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         animator.SetBool("isGrounded", isGrounded);
 
-        rb.linearVelocityX = movementInputX * speed;
+        if (movementInputX != 0)
+            rb.linearVelocityX = movementInputX * speed;
+        else
+            rb.linearVelocityX = 0;
+
         animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocityX));
         animator.SetFloat("yVelocity", rb.linearVelocityY);
 

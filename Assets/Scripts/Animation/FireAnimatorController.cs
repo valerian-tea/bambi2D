@@ -23,9 +23,24 @@ public class FireAnimatorController : MonoBehaviour
         spriteRenderer.flipX = true;
     }
 
-    public void MoveSprite(Vector2 position)
+    [YarnCommand("hide_fire")]
+    public void HideSprite()
     {
-        transform.position = position;
+        spriteRenderer.enabled = false;
+    }
+
+    [YarnCommand("show_fire")]
+    public void ShowSprite()
+    {
+        spriteRenderer.enabled = true;
+    }
+
+    [YarnCommand("move_fire")]
+    public void MoveSprite(GameObject destination)
+    {
+        // transform.position = destination.transform.position;
+        transform.position = new Vector2(0, 0);
+        Debug.Log($"Fire moved to {transform.position}");
     }
 
     [YarnCommand("set_fire_animation")]
