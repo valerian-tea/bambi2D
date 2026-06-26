@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: dog_dig_side
+  m_Name: worm_idle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,17 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 6f326c08468a74e1d88503d7bfaeac21, type: 3}
-    - time: 0.125
-      value: {fileID: 21300000, guid: 3e9b7374fb3e645a6a43723bbcfe4597, type: 3}
+      value: {fileID: 21300000, guid: 99a23c74b54d64f31b2d2ba02cbb5d08, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: c6ab0932faba440e2afb55066fb51121, type: 3}
+      value: {fileID: 21300000, guid: 99a75fe3b5486420fb29bd4a7cce39ee, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 8
+  m_SampleRate: 4
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -48,15 +46,14 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 6f326c08468a74e1d88503d7bfaeac21, type: 3}
-    - {fileID: 21300000, guid: 3e9b7374fb3e645a6a43723bbcfe4597, type: 3}
-    - {fileID: 21300000, guid: c6ab0932faba440e2afb55066fb51121, type: 3}
+    - {fileID: 21300000, guid: 99a23c74b54d64f31b2d2ba02cbb5d08, type: 3}
+    - {fileID: 21300000, guid: 99a75fe3b5486420fb29bd4a7cce39ee, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.375
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

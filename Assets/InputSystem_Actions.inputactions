@@ -34,6 +34,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "DownDig",
+                    "type": "Button",
+                    "id": "ab4aa546-be27-47ba-a806-f5cae86086de",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SideDig",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
@@ -46,15 +55,6 @@
                     "name": "UpDig",
                     "type": "Button",
                     "id": "9642dfa3-0506-4ac4-930f-39fb23434e08",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DownDig",
-                    "type": "Button",
-                    "id": "ab4aa546-be27-47ba-a806-f5cae86086de",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",

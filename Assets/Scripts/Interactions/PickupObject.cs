@@ -9,12 +9,12 @@ public class PickupObject : MonoBehaviour
     public float pickupRadius = 0.5f;
     public LayerMask pickupLayer;
     public VariableStorageBehaviour variableStorage;
+    private PlayerInput input;
+    private SpriteRenderer playerSprite;
     private GameObject carriedObject;
     private Collider2D carriedCollider;
     private SpriteRenderer carriedSprite;
     private Rigidbody2D carriedRb;
-    private PlayerInput input;
-    private SpriteRenderer playerSprite;
 
     void Start()
     {
@@ -26,13 +26,7 @@ public class PickupObject : MonoBehaviour
     {
         if (carriedObject != null)
         {
-            Vector3 currentOffset = mouthOffset;
-            if (playerSprite.flipX)
-                currentOffset.x *= -1f;
-
-            carriedObject.transform.SetParent(mouth, worldPositionStays: false);
-            carriedObject.transform.localPosition = currentOffset;
-            carriedSprite.flipX = playerSprite.flipX;
+            AlignItem();
         }
     }
 
@@ -71,11 +65,6 @@ public class PickupObject : MonoBehaviour
         carriedObject = best.gameObject;
         carriedCollider = carriedObject.GetComponent<Collider2D>();
         carriedSprite = carriedObject.GetComponent<SpriteRenderer>();
-        carriedObject.transform.SetParent(mouth, worldPositionStays: false);
-        Vector3 currentOffset = mouthOffset;
-        if (playerSprite != null && playerSprite.flipX)
-            currentOffset.x *= -1f;
-        carriedObject.transform.localPosition = currentOffset;
     }
 
     private void Drop()
@@ -87,6 +76,17 @@ public class PickupObject : MonoBehaviour
             variableStorage.SetValue("$hasBone", false);
             Debug.Log("Dropped the bone and updated $hasBone to 0.");
         }
+    }
+
+    private void AlignItem()
+    {
+        carriedObject.transform.SetParent(mouth);
+        Vector3 currentOffset = mouthOffset;
+        if (playerSprite.flipX)
+            currentOffset.x *= -1f;
+        Debug.Log($"Aligning item to mouth with offset {currentOffset}");
+        carriedSprite.flipX = playerSprite.flipX;
+        carriedObject.transform.localPosition = currentOffset;
     }
 
     void OnDrawGizmosSelected()
