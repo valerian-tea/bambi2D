@@ -24,7 +24,7 @@ public class PickupObject : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (carriedObject != null)
+        if (mouth.childCount > 0)
         {
             AlignItem();
         }
@@ -32,7 +32,7 @@ public class PickupObject : MonoBehaviour
 
     public void OnCrouch(InputValue value)
     {
-        if (carriedObject == null)
+        if (mouth.childCount == 0)
             TryPickup();
         else
             Drop();
@@ -65,11 +65,19 @@ public class PickupObject : MonoBehaviour
         carriedObject = best.gameObject;
         carriedCollider = carriedObject.GetComponent<Collider2D>();
         carriedSprite = carriedObject.GetComponent<SpriteRenderer>();
+        carriedRb = carriedObject.GetComponent<Rigidbody2D>();
+
+        carriedObject.transform.SetParent(mouth);
+        carriedRb.simulated = false;
+        carriedCollider.isTrigger = true;
     }
 
     private void Drop()
     {
-        Destroy(carriedObject);
+        // Destroy(carriedObject);
+        carriedRb.simulated = true;
+        carriedCollider.isTrigger = false;
+        carriedObject.transform.SetParent(null);
 
         if (variableStorage.TryGetValue("$hasBone", out bool hasBone) && hasBone)
         {
@@ -80,7 +88,6 @@ public class PickupObject : MonoBehaviour
 
     private void AlignItem()
     {
-        carriedObject.transform.SetParent(mouth);
         Vector3 currentOffset = mouthOffset;
         if (playerSprite.flipX)
             currentOffset.x *= -1f;
