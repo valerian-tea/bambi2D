@@ -70,6 +70,12 @@ public class PickupObject : MonoBehaviour
         carriedObject.transform.SetParent(mouth);
         carriedRb.simulated = false;
         carriedCollider.isTrigger = true;
+
+        if (variableStorage.TryGetValue("$hasBone", out bool hasBone) && !hasBone)
+        {
+            variableStorage.SetValue("$hasBone", true);
+            Debug.Log("Picked up the bone and updated $hasBone to 1.");
+        }
     }
 
     private void Drop()

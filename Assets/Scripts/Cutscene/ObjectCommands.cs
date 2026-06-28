@@ -18,4 +18,11 @@ public class ObjectCommands : MonoBehaviour
             collider.enabled = false;
         }
     }
+
+    [YarnCommand("destroy_item")]
+    public void DestroyItem(GameObject item)
+    {
+        Destroy(item);
+        Debug.Log($"Destroyed item: {item.name}");
+    }
 }

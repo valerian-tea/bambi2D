@@ -9772,7 +9772,7 @@ Transform:
   m_GameObject: {fileID: 103773143}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: -1}
+  m_LocalPosition: {x: 18, y: -15, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13378,7 +13378,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.334639, y: -0.8152733, z: -1}
+  m_LocalPosition: {x: 9.655509, y: -14.621066, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18974,7 +18974,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0.2
+            m_FloatArgument: 0.4
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -20365,7 +20365,7 @@ Transform:
   m_GameObject: {fileID: 820431322}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: -10}
+  m_LocalPosition: {x: 15, y: -15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42199,7 +42199,7 @@ Transform:
   m_GameObject: {fileID: 1629446871}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: -10}
+  m_LocalPosition: {x: 15, y: -15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45176,7 +45176,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.13086128, y: 1.4683776}
+  m_Offset: {x: 0, y: 1.4683776}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -46243,6 +46243,7 @@ GameObject:
   - component: {fileID: 1915314621}
   - component: {fileID: 1915314624}
   - component: {fileID: 1915314625}
+  - component: {fileID: 1915314626}
   m_Layer: 0
   m_Name: Commands
   m_TagString: Untagged
@@ -46289,6 +46290,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4f1e818a8a644a8b510ad70db7b5fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InstructionCommands
+--- !u!114 &1915314626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915314620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9c15ac6648447ac9ee5595a2560b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectCommands
 --- !u!114 &1919073741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47543,7 +47556,7 @@ Transform:
   m_GameObject: {fileID: 1970377410}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: -10}
+  m_LocalPosition: {x: 1, y: -15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50475,7 +50488,7 @@ Transform:
   m_GameObject: {fileID: 2139990117}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.2, y: -15, z: -10}
+  m_LocalPosition: {x: 21.045351, y: -15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51382,7 +51395,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1837829526009590934, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1837829526009590934, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: m_LocalPosition.y

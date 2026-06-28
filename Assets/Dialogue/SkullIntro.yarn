@@ -78,11 +78,10 @@ title: FetchBone
     ???: Long ago, certain enemies of mine scattered my bones all over this domain.
     ???: I've managed to recoup most of them over the years, but a few have remained in the clutches of pesky tomb raiders, just out of my reach. //exasperated
     ???: Find my missing bones and drop them in this pit.
-    ???: They're some of my smallest bones, so they should be doable for a being of your... stature.
+    ???: Lucky for both of us, they're my smallest bones, so they should be doable for a being of your... stature.
     <<disable_UI Commands FireMap>>
 <<endonce>>
 <<disable_collider Scene1_BoundL>>
-// <<bound_to_trigger Scene3_BoundR>>
 ===
 
 title: FoundBone
@@ -93,19 +92,25 @@ title: FoundBone
 
 title: BonesMap
 ---
-<<if $hasBone>>
-    Press C to drop the bone.
-<<else>>
-    <<enable_UI Commands FireMap>>
-    <<if $numBones == 3>>
-        3 bones left to find.
-    <<elseif $numBones == 2>>
-        2 bones left to find.
-    <<else>>
-        1 bone left to find.
+<<if $numBones < 3>>
+    <<if $hasBone>>
+        ???: Splendid! You found one!
+        <<destroy_item Commands Phalange>>
+        <<set $hasBone to false>>
+        <<set_skull_animation Skull bored>>
+        ???: Ah, I can feel my power returning.
+        <<set_skull_animation Skull neutral>>
+        <<enable_UI Commands FireMap>>
+        {$numBones} bones left to find.
+        <<disable_UI Commands FireMap>>
     <<endif>>
+<<else>>
+    ???: Hurry along now, go find my missing bones.
+    <<enable_UI Commands FireMap>>
+    {$numBones} bones left to find.
     <<disable_UI Commands FireMap>>
 <<endif>>
+
 
 
 ===
@@ -125,6 +130,5 @@ title: Bone1After
     ???: Well done! Now take it back to the pit.
     Press C to pick up
     <<set $numBones to $numBones - 1>>
-    <<set $hasBone to true>>
 <<endonce>>
 ===
