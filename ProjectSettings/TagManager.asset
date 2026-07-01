@@ -50,6 +50,9 @@ TagManager:
   - name: Interact
     uniqueID: 3894833631
     locked: 0
+  - name: Enemy
+    uniqueID: 703498591
+    locked: 0
   - name: Ground
     uniqueID: 2376472497
     locked: 0

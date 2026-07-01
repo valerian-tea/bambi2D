@@ -1,127 +1,79 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    // State definitions
-    public enum AIState
+    [Header("State Configuration")]
+    [SerializeField]
+    private EnemyStateSO initialState;
+
+    // Reference fields for states this specific enemy is allowed to use
+    public EnemyStateSO idleState;
+    public EnemyStateSO patrolState;
+    public EnemyStateSO chaseState;
+    public EnemyStateSO attackState;
+    public LayerMask playerLayer;
+    private Animator animator;
+
+    private EnemyStateSO _currentState;
+
+    private float attackRange = 1.5f;
+
+    private void Start()
     {
-        Patrol,
-        Chase,
-        Attack,
-    }
-
-    [Header("Current State")]
-    public AIState currentState = AIState.Patrol;
-
-    [Header("References")]
-    public NavMeshAgent agent;
-    public Transform player;
-
-    [Header("AI Settings")]
-    public float sightRange = 10f;
-    public float attackRange = 2f;
-
-    [Header("Patrol Settings")]
-    public Transform[] patrolPoints;
-    private int currentPatrolIndex = 0;
-
-    void Start()
-    {
-        // Automatically fetch NavMeshAgent if not assigned
-        if (agent == null)
-            agent = GetComponent<NavMeshAgent>();
-
-        // Find player by tag if not explicitly linked
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        GoToNextPatrolPoint();
-    }
-
-    void Update()
-    {
-        // Calculate distance to player
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-        // State Machine Switch Logic
-        switch (currentState)
+        animator = GetComponent<Animator>();
+        if (initialState != null)
         {
-            case AIState.Patrol:
-                HandlePatrolState(distanceToPlayer);
-                break;
-            case AIState.Chase:
-                HandleChaseState(distanceToPlayer);
-                break;
-            case AIState.Attack:
-                HandleAttackState(distanceToPlayer);
-                break;
+            TransitionToState(initialState);
         }
     }
 
-    void HandlePatrolState(float distanceToPlayer)
+    private void FixedUpdate()
     {
-        // Behavior: Move from waypoint to waypoint
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-        {
-            GoToNextPatrolPoint();
-        }
-
-        // Transition: Spot player
-        if (distanceToPlayer <= sightRange)
-        {
-            currentState = AIState.Chase;
-        }
+        _currentState?.UpdateState(this);
+        Debug.Log($"Current State: {_currentState?.GetType().Name}");
     }
 
-    void HandleChaseState(float distanceToPlayer)
+    public void TransitionToState(EnemyStateSO newState)
     {
-        // Behavior: Continuously track player position
-        agent.SetDestination(player.position);
-
-        // Transition: Player gets too close (Attack Range)
-        if (distanceToPlayer <= attackRange)
-        {
-            currentState = AIState.Attack;
-        }
-        // Transition: Player escapes (Sight Range)
-        else if (distanceToPlayer > sightRange)
-        {
-            currentState = AIState.Patrol;
-            GoToNextPatrolPoint();
-        }
+        _currentState?.ExitState(this);
+        _currentState = newState;
+        _currentState?.EnterState(this);
     }
 
-    void HandleAttackState(float distanceToPlayer)
+    // Helper methods called by the ScriptableObjects
+    public void Move(
+        float speed
+    ) { /* Navigation logic */
+    }
+
+    public void AttackTarget()
     {
-        // Behavior: Stop moving and face the target
-        agent.SetDestination(transform.position);
-        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+        animator.SetTrigger("attack");
+    }
 
-        // Insert your combat/damage logic or trigger animation here
-        Debug.Log("Attacking the Player!");
+    public bool IsTargetInSight()
+    {
+        return true; /* Check distance/line of sight */
+    }
 
-        // Transition: Player runs away out of attack range
-        if (distanceToPlayer > attackRange)
+    public bool IsTargetInAttackRange()
+    {
+        Collider2D playerCollider = Physics2D.OverlapCircle(
+            transform.position,
+            attackRange,
+            playerLayer
+        );
+        if (playerCollider != null)
         {
-            currentState = AIState.Chase;
+            Debug.Log("Player Detected!");
+            return true;
         }
+        Debug.Log("Player NOT found!");
+        return false;
     }
 
-    void GoToNextPatrolPoint()
+    void OnDrawGizmosSelected()
     {
-        if (patrolPoints.Length == 0)
-            return;
-
-        agent.SetDestination(patrolPoints[currentPatrolIndex].position);
-        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
-    }
-
-    // Visualizes sight and attack fields in the Unity Editor viewport
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
