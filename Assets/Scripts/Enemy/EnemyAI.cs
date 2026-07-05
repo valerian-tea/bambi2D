@@ -16,7 +16,10 @@ public class EnemyAI : MonoBehaviour
 
     private EnemyStateSO _currentState;
 
-    private float attackRange = 1.5f;
+    [Header("Combat")]
+    public float attackCooldown = 3.0f;
+    public float attackRange = 1.5f;
+    private float attackTimer = 0f;
 
     private void Start()
     {
@@ -30,6 +33,8 @@ public class EnemyAI : MonoBehaviour
     private void FixedUpdate()
     {
         _currentState?.UpdateState(this);
+        if (attackTimer > 0f)
+            attackTimer -= Time.fixedDeltaTime;
         Debug.Log($"Current State: {_currentState?.GetType().Name}");
     }
 
@@ -48,7 +53,30 @@ public class EnemyAI : MonoBehaviour
 
     public void AttackTarget()
     {
-        animator.SetTrigger("attack");
+        animator.SetBool("isAttacking", true);
+    }
+
+    public void Idle()
+    {
+        Debug.Log("Enemy is idling.");
+        animator.SetBool("isAttacking", false);
+    }
+
+    public bool CanAttack()
+    {
+        return attackTimer <= 0f;
+    }
+
+    public void TriggerAttack()
+    {
+        if (!CanAttack())
+        {
+            animator.SetBool("isAttacking", false);
+            return;
+        }
+
+        AttackTarget();
+        attackTimer = attackCooldown;
     }
 
     public bool IsTargetInSight()

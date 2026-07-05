@@ -53,9 +53,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!isMovementEnabled)
         {
-            rb.linearVelocity = Vector2.zero;
+            // rb.linearVelocity = Vector2.zero;
             animator.SetFloat("xVelocity", 0);
-            animator.SetFloat("yVelocity", 0);
+            animator.SetFloat("yVelocity", rb.linearVelocityY);
             animator.SetBool("isWalking", false);
             movementInputX = 0f;
             return;
