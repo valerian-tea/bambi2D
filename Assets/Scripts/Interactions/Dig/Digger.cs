@@ -18,6 +18,7 @@ public class Digger : MonoBehaviour
 
     public void OnSideDig(InputValue value)
     {
+        // animator.SetTrigger("digSide");
         Vector3Int digCoordinate;
         if (spriteRenderer.flipX) // Facing left
         {
@@ -38,7 +39,6 @@ public class Digger : MonoBehaviour
 
         if (groundTilemap.HasTile(digCoordinate))
         {
-            animator.SetTrigger("digSide");
             StartCoroutine(DigAtWorldPosition(digCoordinate));
         }
     }

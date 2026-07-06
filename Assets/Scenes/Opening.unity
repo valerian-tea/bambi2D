@@ -9772,7 +9772,7 @@ Transform:
   m_GameObject: {fileID: 103773143}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.29999995, z: -1}
+  m_LocalPosition: {x: 0, y: 0.3000002, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13354,7 +13354,7 @@ Camera:
   far clip plane: 1000
   field of view: 168
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -33671,7 +33671,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.13086128, y: 1.4683776}
+  m_Offset: {x: -0.13086128, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -33681,7 +33681,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.23827744, y: 3.9367552}
+  m_Size: {x: 0.23827744, y: 6}
   m_EdgeRadius: 0
 --- !u!213 &1294244922
 Sprite:
@@ -38786,6 +38786,10 @@ PrefabInstance:
       value: Worm
       objectReference: {fileID: 0}
     - target: {fileID: 7532370370075621660, guid: dfed318990fa64fc9b6d3f15c342ef7e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7532370370075621660, guid: dfed318990fa64fc9b6d3f15c342ef7e, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -40224,7 +40228,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 5}
+  m_Size: {x: 0.5, y: 6}
   m_EdgeRadius: 0
 --- !u!4 &1497572440
 Transform:
@@ -41087,7 +41091,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.06995264, y: 1.1102872}
+  m_Offset: {x: -0.06995264, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -41097,7 +41101,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9448181, y: 3.0118647}
+  m_Size: {x: 0.9448181, y: 6}
   m_EdgeRadius: 0
 --- !u!114 &1539728859
 MonoBehaviour:
@@ -45335,7 +45339,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 1.4683776}
+  m_Offset: {x: 0, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -45345,7 +45349,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.23827744, y: 3.9367552}
+  m_Size: {x: 0.23827744, y: 6}
   m_EdgeRadius: 0
 --- !u!213 &1826113227
 Sprite:
@@ -48950,7 +48954,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.6611066}
+  m_Offset: {x: 0, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -48960,7 +48964,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 3.5162783}
+  m_Size: {x: 1, y: 6}
   m_EdgeRadius: 0
 --- !u!114 &2017163647
 MonoBehaviour:
@@ -51688,6 +51692,14 @@ PrefabInstance:
       propertyPath: groundTilemap
       value: 
       objectReference: {fileID: 1341980672}
+    - target: {fileID: 5979978300019313818, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
+      propertyPath: jumpForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979978300019313818, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7556533927817665716, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: m_Mass
       value: 5
@@ -51695,10 +51707,6 @@ PrefabInstance:
     - target: {fileID: 7556533927817665716, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: m_UseAutoMass
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8338531834184102260, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
-      propertyPath: mouthOffset.y
-      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 8338531834184102260, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: variableStorage

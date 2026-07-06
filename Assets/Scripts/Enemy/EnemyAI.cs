@@ -99,10 +99,4 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("Player NOT found!");
         return false;
     }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
 }

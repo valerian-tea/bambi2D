@@ -4,6 +4,7 @@ using Yarn.Unity;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement Settings")]
     public float speed = 15f;
     public float jumpForce = 15f;
 
@@ -22,6 +23,10 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded;
     private bool wasGrounded;
+
+    [Header("Combat Settings")]
+    public float attackRange = 1.5f;
+    public LayerMask enemyLayer;
 
     void Start()
     {
@@ -69,7 +74,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && !wasGrounded)
         {
             // CHARACTER JUST HIT THE GROUND: Snapshot the velocity once!
-            animator.SetFloat("impactForce", Mathf.Abs(rb.linearVelocity.y));
+            animator.SetFloat("impactVelocity", Mathf.Abs(rb.linearVelocity.y));
         }
         else if (!isGrounded)
         {
@@ -99,6 +104,32 @@ public class PlayerController : MonoBehaviour
             else
                 animator.SetBool("isWalking", false);
         }
+    }
+
+    bool IsTargetInAttackRange()
+    {
+        Collider2D enemyCollider = Physics2D.OverlapCircle(
+            transform.position,
+            attackRange,
+            enemyLayer
+        );
+        if (enemyCollider != null)
+        {
+            Debug.Log("Enemy Detected!");
+            return true;
+        }
+        Debug.Log("Enemy NOT found!");
+        return false;
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        animator.SetTrigger("digSide");
+    }
+
+    public void OnDownAttack(InputValue value)
+    {
+        animator.SetTrigger("downAttack");
     }
 
     public void StopMovement()

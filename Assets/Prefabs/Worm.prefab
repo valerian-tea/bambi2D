@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5941528245782645150}
   - component: {fileID: 2456871588820227212}
   - component: {fileID: 2809846148818845500}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,3 +172,5 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  attackCooldown: 2
+  attackRange: 1.5
