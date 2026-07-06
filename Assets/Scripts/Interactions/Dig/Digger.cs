@@ -43,18 +43,6 @@ public class Digger : MonoBehaviour
         }
     }
 
-    // public void OnUpDig(InputValue value)
-    // {
-    //     Vector3Int digCoordinate = new Vector3Int(
-    //         Mathf.FloorToInt(this.transform.position.x),
-    //         Mathf.FloorToInt(this.transform.position.y + 1),
-    //         0
-    //     );
-
-    //     animator.SetTrigger("dig");
-    //     StartCoroutine(DigAtWorldPosition(digCoordinate));
-    // }
-
     public void OnDownDig(InputValue value)
     {
         Vector3Int digCoordinate = new Vector3Int(
@@ -72,7 +60,7 @@ public class Digger : MonoBehaviour
 
     private IEnumerator DigAtWorldPosition(Vector3Int worldPos)
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.3f);
         Vector3Int coordinate = groundTilemap.WorldToCell(worldPos);
         groundTilemap.SetTile(coordinate, null);
     }

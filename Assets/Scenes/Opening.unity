@@ -13354,7 +13354,7 @@ Camera:
   far clip plane: 1000
   field of view: 168
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -16877,7 +16877,7 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 2679372660853513498, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1428603148}
   - key: {fileID: -7400685650143338433, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
     value: {fileID: 330585548}
@@ -16887,7 +16887,7 @@ PlayableDirector:
     value: {fileID: 103773148}
   - key: {fileID: 8099524116207463818, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
     value: {fileID: 820431327}
-  - key: {fileID: 8390004356201049157, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1428603148}
   - key: {fileID: 2679372660853513498, guid: b6a2da229eac645e18b467dd617fcab1, type: 2}
     value: {fileID: 1428603148}
@@ -18807,7 +18807,7 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 2679372660853513498, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1428603148}
   - key: {fileID: -7400685650143338433, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
     value: {fileID: 330585548}
@@ -18817,7 +18817,7 @@ PlayableDirector:
     value: {fileID: 103773148}
   - key: {fileID: 8099524116207463818, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
     value: {fileID: 820431327}
-  - key: {fileID: 8390004356201049157, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1428603148}
   m_ExposedReferences:
     m_References:
@@ -34493,7 +34493,7 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 2679372660853513498, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1428603148}
   - key: {fileID: -7400685650143338433, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
     value: {fileID: 330585548}
@@ -34503,7 +34503,7 @@ PlayableDirector:
     value: {fileID: 103773148}
   - key: {fileID: 8099524116207463818, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
     value: {fileID: 820431327}
-  - key: {fileID: 8390004356201049157, guid: 8ab64c9b09e0d40aab686aa4ce27c41c, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1428603148}
   - key: {fileID: 2679372660853513498, guid: b6a2da229eac645e18b467dd617fcab1, type: 2}
     value: {fileID: 1428603148}

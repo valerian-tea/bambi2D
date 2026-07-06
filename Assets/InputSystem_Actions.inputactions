@@ -330,7 +330,7 @@
                 {
                     "name": "",
                     "id": "b3c1c7f0-bd20-4ee7-a0f1-899b24bca6d7",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -484,7 +484,7 @@
                 {
                     "name": "binding",
                     "id": "8eeebd31-f0b9-4279-a42d-6c8a86ca661c",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -528,7 +528,7 @@
                 {
                     "name": "",
                     "id": "5099fc6a-5cde-4d7d-a908-3483eea297f4",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
