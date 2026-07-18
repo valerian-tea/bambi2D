@@ -2,12 +2,21 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float maxHealth = 100f;
+    public float maxHealth = 40f;
     private float currentHealth;
+    private Animator animator;
 
-    void TakeDamage(float damage)
+    void Start()
     {
+        currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
+    }
+
+    public void TakeDamage(float damage)
+    {
+        animator.SetTrigger("damage");
         currentHealth -= damage;
+        Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
         if (currentHealth <= 0)
         {
             Die();

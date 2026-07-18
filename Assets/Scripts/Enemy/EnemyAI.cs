@@ -93,10 +93,8 @@ public class EnemyAI : MonoBehaviour
         );
         if (playerCollider != null)
         {
-            Debug.Log("Player Detected!");
             return true;
         }
-        Debug.Log("Player NOT found!");
         return false;
     }
 }

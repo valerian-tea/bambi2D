@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
     [Header("Combat Settings")]
     public float attackRange = 1.5f;
     public LayerMask enemyLayer;
+    public GameObject attackHitbox;
+    private bool isAttacking = false;
 
     void Start()
     {
@@ -125,6 +128,17 @@ public class PlayerController : MonoBehaviour
     public void OnAttack(InputValue value)
     {
         animator.SetTrigger("digSide");
+        isAttacking = true;
+        StartCoroutine(ActivateHitbox());
+    }
+
+    private IEnumerator ActivateHitbox()
+    {
+        attackHitbox.SetActive(true);
+        Debug.Log("Attack hitbox activated.");
+        yield return new WaitForSeconds(0.1f);
+        attackHitbox.SetActive(false);
+        isAttacking = false;
     }
 
     public void OnDownAttack(InputValue value)

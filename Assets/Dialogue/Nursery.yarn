@@ -1,0 +1,45 @@
+﻿title: Nursery_OnStart
+---
+<<set_dog_animation Dog awake>>
+===
+
+title: Nursery_HelpMe
+---
+<<set_dog_animation Dog shock>>
+<<pan right>>
+???: Help... me...
+===
+
+title: Nursery_EggBroke
+---
+???: Whew, thanks! It was so cramped I thought I was gonna die in there.
+Ducky: I'm, uh, Ducky! What's your name?
+<<user input>>
+<<set_dog_animation Dog bark>>
+Ducky: Nice to meet ya!
+<<set_duck_animation Ducky look_around>>
+Ducky: I don't suppose you know where this is, do you?
+<<set_dog_animation Dog move+bark>> //or timeline
+Ducky: Oh! You think we can climb out that way?
+Ducky: It looks awfully far...
+<<set_dog_animation Dog bark>>
+Ducky: O-okay! Let's give it a try!
+===
+
+title: Nursery_Summit
+---
+Ducky: Whew, we made it to the top! Nice work!
+<<set_dog_animation Dog wag>>
+Ducky: Now to break this window, huh?
+Ducky: It looks so expensive though. Is this really okay?
+<<set_dog_animation Dog bark>>
+Ducky: Yeah, I guess we gotta if we want to get out of here.
+===
+
+title: Nursery_GlassBroke
+---
+Ducky: Whoa! You actually did it! 
+<<trigger timeline: screaming+flickering>>
+Ducky: Ah!
+<<trigger timeline: grab+run!>>
+===
