@@ -53,7 +53,8 @@ public class Digger : MonoBehaviour
 
         if (groundTilemap.HasTile(digCoordinate))
         {
-            animator.SetTrigger("digDown");
+            animator.SetInteger("actionID", 1);
+            animator.SetTrigger("action");
             StartCoroutine(DigAtWorldPosition(digCoordinate));
         }
     }

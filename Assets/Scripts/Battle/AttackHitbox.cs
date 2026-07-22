@@ -6,7 +6,7 @@ public class AttackHitbox : MonoBehaviour
     {
         Debug.Log("Attack hitbox triggered by: " + other.name);
         Health enemyHealth = other.GetComponent<Health>();
-        if (other.CompareTag("Enemy") && enemyHealth != null)
+        if (other.CompareTag("Enemy") || other.CompareTag("Player") && enemyHealth != null)
         {
             enemyHealth.TakeDamage(10);
             Debug.Log("Hit: " + other.name);

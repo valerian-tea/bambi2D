@@ -12,6 +12,7 @@ title: Nursery_HelpMe
 
 title: Nursery_EggBroke
 ---
+<<set_duck_animation Ducky fall_out>>
 ???: Whew, thanks! It was so cramped I thought I was gonna die in there.
 Ducky: I'm, uh, Ducky! What's your name?
 <<user input>>

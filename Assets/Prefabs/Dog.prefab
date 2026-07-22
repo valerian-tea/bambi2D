@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 3916786142289786301}
   - component: {fileID: 7722353164277879159}
   - component: {fileID: 8338531834184102260}
+  - component: {fileID: 3216867910432680598}
   m_Layer: 8
   m_Name: Dog
   m_TagString: Player
@@ -432,6 +433,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   variableStorage: {fileID: 0}
+--- !u!114 &3216867910432680598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8920437550801904861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62efaada0f3bd4569b5d2a9d54e1999e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
 --- !u!1 &9205156662409177263
 GameObject:
   m_ObjectHideFlags: 0

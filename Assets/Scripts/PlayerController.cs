@@ -12,8 +12,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform groundCheck;
 
-    public float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer;
+    [SerializeField]
+    private float groundCheckRadius = 0.2f;
+
+    [SerializeField]
+    private LayerMask groundLayer;
 
     private Rigidbody2D rb;
     private float movementInputX;
@@ -22,14 +25,27 @@ public class PlayerController : MonoBehaviour
     private PlayerInput input;
     private bool isMovementEnabled = true;
 
+    [Header("Jump Settings")]
     private bool isGrounded;
     private bool wasGrounded;
 
-    [Header("Combat Settings")]
+    [Header("Dash Settings")]
+    private float originalGravity;
+    private float originalYVelocity;
+
+    private bool canDash = true;
+    private bool isDashing;
+
+    [SerializeField]
+    private float dashCooldown = 2f;
+
+    [SerializeField]
+    private float dashForce = 10f;
+
+    [Header("Attack Settings")]
     public float attackRange = 1.5f;
     public LayerMask enemyLayer;
     public GameObject attackHitbox;
-    private bool isAttacking = false;
 
     void Start()
     {
@@ -37,11 +53,26 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         input = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
+        originalGravity = rb.gravityScale;
     }
 
     public void OnMove(InputValue value)
     {
         movementInputX = value.Get<Vector2>().x;
+    }
+
+    public IEnumerator OnDash(InputValue value)
+    {
+        // if (!canDash)
+        //     yield break;
+        isDashing = true;
+        animator.SetInteger("actionID", 2);
+        animator.SetTrigger("action");
+        canDash = false;
+        yield return new WaitForSeconds(0.1f);
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 
     public void OnJump(InputValue value)
@@ -55,7 +86,9 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         rb.linearVelocityY = jumpForce;
-        animator.SetTrigger("jump");
+        animator.SetInteger("actionID", 0);
+        animator.SetTrigger("action");
+        // animator.SetTrigger("jump");
     }
 
     bool CheckIfGrounded()
@@ -70,6 +103,28 @@ public class PlayerController : MonoBehaviour
         if (!isMovementEnabled)
         {
             movementInputX = 0f;
+        }
+
+        if (isDashing)
+        {
+            rb.gravityScale = 0f;
+            rb.linearVelocityY = 0f;
+            animator.SetFloat("yVelocity", 0f);
+            if (spriteRenderer.flipX == false)
+                rb.linearVelocityX = dashForce;
+            else
+                rb.linearVelocityX = -dashForce;
+
+            Debug.Log(
+                $"rb.linearVelocityX: {rb.linearVelocityX}, rb.linearVelocityY: {rb.linearVelocityY}"
+            );
+
+            return;
+        }
+        else
+        {
+            rb.gravityScale = originalGravity;
+            originalYVelocity = rb.linearVelocityY;
         }
 
         bool isGrounded = CheckIfGrounded(); // Your existing ground check
@@ -109,36 +164,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool IsTargetInAttackRange()
-    {
-        Collider2D enemyCollider = Physics2D.OverlapCircle(
-            transform.position,
-            attackRange,
-            enemyLayer
-        );
-        if (enemyCollider != null)
-        {
-            Debug.Log("Enemy Detected!");
-            return true;
-        }
-        Debug.Log("Enemy NOT found!");
-        return false;
-    }
-
     public void OnAttack(InputValue value)
     {
-        animator.SetTrigger("digSide");
-        isAttacking = true;
-        StartCoroutine(ActivateHitbox());
-    }
-
-    private IEnumerator ActivateHitbox()
-    {
-        attackHitbox.SetActive(true);
-        Debug.Log("Attack hitbox activated.");
-        yield return new WaitForSeconds(0.1f);
-        attackHitbox.SetActive(false);
-        isAttacking = false;
+        animator.SetInteger("attackID", 0);
+        animator.SetTrigger("attack");
     }
 
     public void OnDownAttack(InputValue value)

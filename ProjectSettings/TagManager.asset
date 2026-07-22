@@ -60,6 +60,9 @@ TagManager:
   - name: Skull
     uniqueID: 1132919347
     locked: 0
+  - name: Foreground
+    uniqueID: 1157906157
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
