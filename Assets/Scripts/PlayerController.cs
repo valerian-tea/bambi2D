@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         input = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
         originalGravity = rb.gravityScale;
@@ -129,25 +129,12 @@ public class PlayerController : MonoBehaviour
 
         bool isGrounded = CheckIfGrounded(); // Your existing ground check
 
-        if (isGrounded && !wasGrounded)
-        {
-            // CHARACTER JUST HIT THE GROUND: Snapshot the velocity once!
-            animator.SetFloat("impactVelocity", Mathf.Abs(rb.linearVelocity.y));
-        }
-        else if (!isGrounded)
-        {
-            // CHARACTER IS IN THE AIR: Keep updating live velocity for aerial transitions
-            animator.SetFloat("yVelocity", rb.linearVelocity.y);
-        }
-
-        wasGrounded = isGrounded;
-
         if (movementInputX != 0)
             rb.linearVelocityX = movementInputX * speed;
         else
             rb.linearVelocityX = 0;
 
-        animator.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocityX));
+        animator.SetInteger("xVel", Mathf.Abs(Mathf.FloorToInt(rb.linearVelocityX)));
         animator.SetFloat("yVelocity", rb.linearVelocityY);
 
         if (movementInputX > 0)

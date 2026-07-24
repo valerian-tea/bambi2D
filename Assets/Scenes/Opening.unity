@@ -9688,7 +9688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &103773144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9745,7 +9745,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 168
-    OrthographicSize: 3
+    OrthographicSize: 3.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -9772,7 +9772,7 @@ Transform:
   m_GameObject: {fileID: 103773143}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9, y: -15, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13354,7 +13354,7 @@ Camera:
   far clip plane: 1000
   field of view: 168
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -13379,7 +13379,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.9978027, y: -14.009736, z: -27.196302}
+  m_LocalPosition: {x: 3.223528, y: -0.000002861023, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20357,7 +20357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &820431323
 Transform:
   m_ObjectHideFlags: 0
@@ -20367,7 +20367,7 @@ Transform:
   m_GameObject: {fileID: 820431322}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9, y: -15, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20429,7 +20429,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 168
-    OrthographicSize: 2
+    OrthographicSize: 3
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -42476,7 +42476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1629446872
 Transform:
   m_ObjectHideFlags: 0
@@ -42486,7 +42486,7 @@ Transform:
   m_GameObject: {fileID: 1629446871}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9, y: -15, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42568,7 +42568,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 168
-    OrthographicSize: 3
+    OrthographicSize: 3.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -50729,7 +50729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2139990118
 Transform:
   m_ObjectHideFlags: 0
@@ -50739,7 +50739,7 @@ Transform:
   m_GameObject: {fileID: 2139990117}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.2, y: -15, z: -10}
+  m_LocalPosition: {x: 3.2, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51646,11 +51646,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1837829526009590934, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1837829526009590934, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1837829526009590934, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: m_LocalPosition.z
@@ -51690,11 +51690,7 @@ PrefabInstance:
       objectReference: {fileID: 1341980672}
     - target: {fileID: 5979978300019313818, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: dashForce
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5979978300019313818, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
-      propertyPath: dashCooldown
-      value: 2
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8338531834184102260, guid: ae270c417bcd944bfacb4d6228fdebba, type: 3}
       propertyPath: variableStorage

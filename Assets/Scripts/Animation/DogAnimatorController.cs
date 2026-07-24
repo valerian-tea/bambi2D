@@ -28,16 +28,15 @@ public class DogAnimatorController : MonoBehaviour
     {
         if (action == "bark")
         {
-            animator.SetInteger("emotion", 1);
+            animator.SetInteger("emoteID", 1);
         }
         else if (action == "sad")
-            animator.SetInteger("emotion", 2);
+            animator.SetInteger("emoteID", 2);
         else if (action == "wag")
         {
-            animator.SetInteger("emotion", 3);
+            animator.SetInteger("emoteID", 0);
         }
-        else if (action == "neutral")
-            animator.SetInteger("emotion", 0);
+        animator.SetTrigger("emote");
     }
 
     public IEnumerator Wag()

@@ -210,6 +210,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  dashCooldown: 2
+  dashForce: 25
   attackRange: 1.5
   enemyLayer:
     serializedVersion: 2
@@ -463,7 +465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5983015549341725122
 Transform:
   m_ObjectHideFlags: 0
