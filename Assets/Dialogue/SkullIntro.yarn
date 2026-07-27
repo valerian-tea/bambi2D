@@ -132,3 +132,95 @@ title: Bone1After
     <<set $numBones to $numBones - 1>>
 <<endonce>>
 ===
+
+title: AllBonesDone
+---
+???: Ah, at last. All my bones are reunited.
+//xolotl materializes from whole skeleton
+???: Surprised to see a fellow canine?
+???: I am taking this form to be more easily comprehensible to you. Getting on your level, so to speak.
+Xolotl: My name is Xolotl. I thank you for restoring my power.
+Xolotl: As promised, I will grant you any wish, as long as it is in my ability. 
+Xolotl: Tell me, what is your wish?
+<<set_dog_animation Dog bark>>
+Xolotl: Hmm? A lost girl, you say?
+Xolotl: That can be arranged. Do you have a strong memory of this girl? One that carries an intense emotion, whether that be happiness, sadness, anger.
+Xolotl: Close your eyes. Picture it in your head.
+//dog close eyes
+//overlay anim of smile, hands outstretched for hug, throwing toy
+Xolotl: Yes, the joy in this memory should do nicely for locating her soul.
+//stone appears
+//Xolotl moves towards it
+Xolotl: ...I see.
+Xolotl: This girl is no longer in the world of the living.
+//dog sad
+Xolotl: At least, her soul is not. But her physical body appears to be alive and unharmed.
+Xolotl: But you already knew that, didn't you? //narrow eyes
+//dog whines
+Xolotl: Unfortunately, the girl is in a unique state. She can only return to the world of the living if she chooses. No one else can make that choice for her.
+Xolotl: I'm sorry, little one. I cannot help you.
+<<jump HuehueIntro>>
+===
+
+title: HuehueIntro
+---
+???: What the heck, Xolo!
+//coyote appears
+???: Here you are harping on about being able to grant any wish!
+Xolotl: You again, Coyote.
+Coyote?: Grr, use my full name, won't ya? It's Huehuecoyotl to you! Hue-hue-coyotl!
+Huehuecoyotl: This pup needs help. Isn't it our job to help the denizens of Tlaltipac?
+Xolotl: We cannot disrupt the balance of life and death, Coyote. 
+Huehuecoyotl: What, scared of your big brother?
+//X annoyed, shakes it off
+Xolotl: If we bring one soul back, the floodgates will open and I will be powerless to stop it. You know that.
+Xolotl: Besides, either of us entering the Dream Mind of a single human would cause it to shatter.
+Huehuecoyotl: WE can't intervene in human affairs. But that doesn't mean HE can't.
+Huehuecoyotl: Why don't we have this pup enter her Dream Mind? He's not a god so it should be fine, right?
+Xolotl: What? He's just a little dog. Frankly, I'm still not sure how he is got here.
+Xolotl: The Dream Mind is a dangerous place. If he were to descend, the chances are high that he would not come back.
+<<set_dog_animation Dog bark>>
+Xolotl: What? You want to do it, knowing the risks?
+Huehuecoyotl: That's the spirit, pup!
+//dog wags tail
+Xolotl: That's absurd. But...
+Xolotl: With the strength of his resolve, perhaps he has a chance to reach her. 
+Xolotl: But why do you care what happens to this little dog and his human?
+Huehuecoyotl: Honestly, I just love the drama! This well-ordered world of yours is so boring sometimes. That's why I try to stir up a little excitement from time to time!
+Huehuecoyotl: Plus, I'm imagining Quetzalcoatl's face when he finds out about this. Heehee!
+Xolotl: Sigh. No guarantees, but I will let you try, little one.
+Xolotl: Come take a look at this stone slab.
+<<jump MindSurface>>
+===
+
+title: MindSurface
+---
+//dog moves closer
+//overlay: grooves on stone
+Xolotl: This is your girl's Mind Surface.
+Xolotl: See these pits? These represent the places she frequents most in her subconscious.
+Xolotl: The deeper the pit, the more time she has spent there.
+//marbles scatter onto surface and start spinning around
+Xolotl: You see, the mind really is a bunch of marbles, which roll around and catch on invisible things on the Mind Surface. 
+Xolotl: In a healthy mind, the marbles roam freely, covering lots of ground.
+//a marble starts circulating in one certain spot>
+Xolotl: A marble may circle over the same path for a little while, which deepens the trench. That increases the activation energy needed for the marble to break out with its own momentum.
+//marble breaks out>
+Xolotl: Normally, this is not a problem, as the human mind is full of distractions. Distractions give the marbles enough energy to break out and explore other areas.
+//one marble starts circling
+Xolotl: However, occasionally, a marble does not receive enough energy to break free of its orbit. Eventually, it carves itself deeper into the Mind Surface, to the point that it can no longer escape. 
+Xolotl: This usually means there are troubles the human is fixating on. The more they fixate and overthink, the more gravity those troubles build up, and they become even more irresistible to think about.
+//<one marble sinks deeper into stone>
+Huehuecoyotl: in other words, a vicious cycle, huh?
+Xolotl: Yes. 
+Xolotl: Your task, little one, is to dive into these pits and extricate the marbles lodged there. Then, I can restore the surface to a flat state.
+Xolotl: There are four major pits. We shall target this one first.
+Huehuecoyotl: Why that one? There's only one marble in there.
+Xolotl: I doubt the little one can handle the deeper pits yet. There is no point charging ahead only to fail immediately.
+Huehuecoyotl: Hmph, always so careful.
+Xolotl: Well, little one? Shall I send you to the first pit?
+<<set_dog_animation Dog bark>>
+Xolotl: brace yourself.
+Huehuecoyotl: I'm rooting for ya, pup!
+//<X howls. Dog envelopes in green light and floats in sky. Screen whites out>
+===

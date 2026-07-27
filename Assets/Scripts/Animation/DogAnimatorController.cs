@@ -26,17 +26,31 @@ public class DogAnimatorController : MonoBehaviour
     [YarnCommand("set_dog_animation")]
     public void SetAction(string action)
     {
-        if (action == "bark")
+        switch (action)
         {
-            animator.SetInteger("emoteID", 1);
+            case "wag":
+                animator.SetInteger("emoteID", 0);
+                animator.SetTrigger("emote");
+                break;
+            case "bark":
+                animator.SetInteger("emoteID", 1);
+                animator.SetTrigger("emote");
+                break;
+            case "sad":
+                animator.SetInteger("emoteID", 2);
+                animator.SetTrigger("emote");
+                break;
+            case "sleep":
+                animator.SetInteger("emoteID", 3);
+                animator.SetTrigger("emote");
+                break;
+            case "surprised":
+                animator.SetInteger("emoteID", 4);
+                animator.SetTrigger("emote");
+                break;
+            default:
+                break;
         }
-        else if (action == "sad")
-            animator.SetInteger("emoteID", 2);
-        else if (action == "wag")
-        {
-            animator.SetInteger("emoteID", 0);
-        }
-        animator.SetTrigger("emote");
     }
 
     public IEnumerator Wag()

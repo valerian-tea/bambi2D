@@ -1,24 +1,26 @@
 ﻿title: Nursery_OnStart
 ---
-<<set_dog_animation Dog awake>>
+//hide start with transition
+<<set_dog_animation Dog sleep>>
 ===
 
 title: Nursery_HelpMe
 ---
-<<set_dog_animation Dog shock>>
-<<pan right>>
+// <<pan right>>
 ???: Help... me...
+<<set_dog_animation Dog surprised>>
+// <<dog move>>
 ===
 
 title: Nursery_EggBroke
 ---
-<<set_duck_animation Ducky fall_out>>
+// <<set_duck_animation Ducky fall_out>>
 ???: Whew, thanks! It was so cramped I thought I was gonna die in there.
 Ducky: I'm, uh, Ducky! What's your name?
 <<user input>>
 <<set_dog_animation Dog bark>>
 Ducky: Nice to meet ya!
-<<set_duck_animation Ducky look_around>>
+// <<set_duck_animation Ducky look_around>>
 Ducky: I don't suppose you know where this is, do you?
 <<set_dog_animation Dog move+bark>> //or timeline
 Ducky: Oh! You think we can climb out that way?
