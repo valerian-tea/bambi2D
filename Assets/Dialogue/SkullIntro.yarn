@@ -1,7 +1,16 @@
-﻿title: Dig
+﻿title: BasicMove
 ---
 <<once>>
-    <<enable_UI Commands DigInstruction>>
+    Wisp: Hey! Looking a little lost there.
+    Wisp: Press Space to Jump! And hit the WASD / arrow keys to move around!
+<<endonce>>
+===
+
+title: Dig
+---
+<<once>>
+    Wisp: Press X while standing on a patch of dirt to dig down!
+    Wisp: Though, no promises what you'll find once you dig. Heehee!
 <<endonce>>
 ===
 
@@ -24,7 +33,6 @@ title: SkullIntro
     <<wait 2.0>>
     ???: Or perhaps, are you the dashing savior here to rescue me from my chains?
     ???: Tell me, what are you here for?
-    // <<set_light_intensity SpotLight 0.5>>
     <<fade_light GlobalLight 1.0>>
     <<fade_light PlayerLight 1.0>>
     ???: ...
@@ -32,36 +40,34 @@ title: SkullIntro
     <<hide_fire Fire>>
     <<show_skull Skull>>
     <<fade_light SkullLight 1>>
-    I suggest you turn back, small one. This is no place to wander alone.
+    ???: My name is Xolotl. This place you've found yourself in is my temple. Or rather, what remains of it.
+    Xolotl: I suggest you turn back, small one. This is no place to wander alone.
     <<wait 1.0>>
     <<set_skull_animation Skull bored>>
-    ...
+    Xolotl: (Can it understand me?)
     <<wait 1.0>>
     <<set_skull_animation Skull exasp>>
-    ... 
-    (Can it understand me?)
-    (Or is it feigning ignorance?)
+    Xolotl: (Or is it feigning ignorance?)
     // <optional: dog itch>
     <<set_skull_animation Skull angry>>
-    (Gah! A touch nut to crack, I see).
-    ???: Out with it! Do you have a wish or not?
+    Xolotl: (Gah! A touch nut to crack, I see.)
+    Xolotl: Out with it! Do you have a wish or not?
     <<set_dog_animation Dog bark>>
     <<wait 1.0>>
     <<set_skull_animation Skull neutral>>
-    ???: Oh? 
-    ???: I suppose it is odd for a lowly creature like yourself to end up here, all alone.
-    ???: What are you searching for, small one?
+    Xolotl: Oh? 
+    Xolotl: I suppose it is odd for a lowly creature like yourself to end up here, all alone.
+    Xolotl: What are you searching for, small one?
     <<set_skull_animation Skull bored>>
-    ???: What have you lost?
+    Xolotl: What have you lost?
     <<set_dog_animation Dog sad>>
     <<wait 1.0>>
-    ???: ...
+    Xolotl: ...
     <<set_skull_animation Skull neutral>>
-    ???: Well, worry not. Whatever it is, I can help you find it.
+    Xolotl: Well, worry not. I can help you find it. As soon as you help me with one small favor, that is.
     <<set_dog_animation Dog wag>>
     <<wait 1.0>>
-    ???: As soon as you help me with one small favor, that is.
-    ???: Come with me.
+    Xolotl: Come with me.
     <<play_timeline CutsceneTrigger2>>
 <<endonce>>
 ===
@@ -71,22 +77,22 @@ title: FetchBone
 <<once>>
     <<declare $numBones =  3>>
     <<declare $hasBone = false>>
-    ???: Er, so--I need you to fetch my bones.
-    //optional: sound effect or dog cock head
+    Xolotl: Er, so--I need you to fetch my bones.
+    //optional: sound effect or dog cock head- confused
     <<wait 1.0>>
     <<enable_UI Commands FireMap>>
-    ???: Long ago, certain enemies of mine scattered my bones all over this domain.
-    ???: I've managed to recoup most of them over the years, but a few have remained in the clutches of pesky tomb raiders, just out of my reach. //exasperated
-    ???: Find my missing bones and drop them in this pit.
-    ???: Lucky for both of us, they're my smallest bones, so they should be doable for a being of your... stature.
+    Xolotl: Long ago, certain enemies of mine scattered my bones all over this domain.
+    Xolotl: I've managed to recoup most of them over the years, but a few have remained in the clutches of pesky tomb raiders, just out of my reach.
+    Xolotl: Find my missing bones and drop them in this pit.
+    Xolotl: Lucky for both of us, they're my smallest bones, so they should be doable for a being of your... stature.
     <<disable_UI Commands FireMap>>
 <<endonce>>
-<<disable_collider Scene1_BoundL>>
+<<disable_collider Cutscene1>>
 ===
 
 title: FoundBone
 ---
-???: I feel my power returning...
+Xolotl: Well done, now bring it back to the pit.
 <<jump BonesMap>>
 ===
 
@@ -94,18 +100,17 @@ title: BonesMap
 ---
 <<if $numBones < 3>>
     <<if $hasBone>>
-        ???: Splendid! You found one!
         <<destroy_item Commands Phalange>>
         <<set $hasBone to false>>
         <<set_skull_animation Skull bored>>
-        ???: Ah, I can feel my power returning.
+        Xolotl: Ah, I feel my power returning.
         <<set_skull_animation Skull neutral>>
         <<enable_UI Commands FireMap>>
         {$numBones} bones left to find.
         <<disable_UI Commands FireMap>>
     <<endif>>
 <<else>>
-    ???: Hurry along now, go find my missing bones.
+    Xolotl: Hurry along now, go find my missing bones.
     <<enable_UI Commands FireMap>>
     {$numBones} bones left to find.
     <<disable_UI Commands FireMap>>
@@ -118,29 +123,35 @@ title: BonesMap
 title: Bone1Start
 ---
 <<once>>
-    ???: See those holes?
-    ???: One of them has my phalange. Dig to unearth it.
-    Press X while standing next to a dark patch to dig
+    Xolotl: See those holes?
+    Xolotl: I can sense my phalange in one of these holes. The thief must have hidden it here.
+    Press X while standing next to a dark patch to dig!
 <<endonce>>
+===
+
+title: WormReveal
+---
+Xolotl: Ah, a worm. In my current state, I'm afraid I cannot assist you in defeating it.
+Xolotl: Attack carefully while dodging its attacks.
+Press X to attack and Z to dash.
 ===
 
 title: Bone1After
 ---
 <<once>>
-    ???: Well done! Now take it back to the pit.
-    Press C to pick up
+    Xolotl: Well done! Now take it back to the pit.
+    Press C to pick up.
     <<set $numBones to $numBones - 1>>
 <<endonce>>
 ===
 
 title: AllBonesDone
 ---
-???: Ah, at last. All my bones are reunited.
+Xolotl: Ah, at last. All my bones are reunited.
 //xolotl materializes from whole skeleton
-???: Surprised to see a fellow canine?
-???: I am taking this form to be more easily comprehensible to you. Getting on your level, so to speak.
-Xolotl: My name is Xolotl. I thank you for restoring my power.
-Xolotl: As promised, I will grant you any wish, as long as it is in my ability. 
+Xolotl: Surprised to see a fellow canine?
+Xolotl: I am taking this form to be more easily comprehensible to you. Getting on your level, so to speak.
+Xolotl: I thank you for restoring my power. As promised, I will grant you any wish, as long as it is in my ability. 
 Xolotl: Tell me, what is your wish?
 <<set_dog_animation Dog bark>>
 Xolotl: Hmm? A lost girl, you say?
