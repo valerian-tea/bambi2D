@@ -1,16 +1,40 @@
-﻿title: BasicMove
+﻿title: Start
+---
+<<declare $numBones =  3>>
+<<declare $hasBone = false>>
+<<declare $hasMetSkull = false>>
+===
+
+title: BasicMove
 ---
 <<once>>
-    Wisp: Hey! Looking a little lost there.
-    Wisp: Press Space to Jump! And hit the WASD / arrow keys to move around!
+    Wisp: Little lost one... come this way!
+    WASD to move. Space to Jump.
 <<endonce>>
 ===
 
 title: Dig
 ---
 <<once>>
-    Wisp: Press X while standing on a patch of dirt to dig down!
-    Wisp: Though, no promises what you'll find once you dig. Heehee!
+    Wisp: Your path is blocked up ahead... but you have the power to get through it!
+    X to Dig.
+<<endonce>>
+===
+
+title: Dash
+---
+<<once>>
+    Wisp: A treacherous path ahead... but the faster you go, the easier it'll be.
+    Z to Dash.
+<<endonce>>
+===
+
+
+title: DigDown
+---
+<<once>>
+    Wisp: Come here, down this hole! An adventure awaits...
+    Down + X to Dig downwards.
 <<endonce>>
 ===
 
@@ -68,15 +92,22 @@ title: SkullIntro
     <<set_dog_animation Dog wag>>
     <<wait 1.0>>
     Xolotl: Come with me.
-    <<play_timeline CutsceneTrigger2>>
+    <<play_timeline CT_Pit>>
+    <<set $hasMetSkull = true>>
+
 <<endonce>>
+===
+
+title: OpenWall
+---
+<<if $hasMetSkull>>
+    <<play_timeline CT_OpenWall>>
+<<endif>>
 ===
 
 title: FetchBone
 ---
 <<once>>
-    <<declare $numBones =  3>>
-    <<declare $hasBone = false>>
     Xolotl: Er, so--I need you to fetch my bones.
     //optional: sound effect or dog cock head- confused
     <<wait 1.0>>
@@ -98,19 +129,19 @@ Xolotl: Well done, now bring it back to the pit.
 
 title: BonesMap
 ---
-<<if $numBones < 3>>
-    <<if $hasBone>>
-        <<destroy_item Commands Phalange>>
-        <<set $hasBone to false>>
-        <<set_skull_animation Skull bored>>
-        Xolotl: Ah, I feel my power returning.
-        <<set_skull_animation Skull neutral>>
-        <<enable_UI Commands FireMap>>
-        {$numBones} bones left to find.
-        <<disable_UI Commands FireMap>>
+<<if $hasBone>>
+    <<if $numBones == 2>>
+        <<disable_collider Bone1NotDone>>
     <<endif>>
+    <<destroy_item Commands Phalange>>
+    <<set $hasBone to false>>
+    <<set_skull_animation Skull bored>>
+    Xolotl: Ah, I feel my power returning.
+    <<set_skull_animation Skull neutral>>
+    <<enable_UI Commands FireMap>>
+    {$numBones} bones left to find.
+    <<disable_UI Commands FireMap>>
 <<else>>
-    Xolotl: Hurry along now, go find my missing bones.
     <<enable_UI Commands FireMap>>
     {$numBones} bones left to find.
     <<disable_UI Commands FireMap>>
@@ -124,8 +155,8 @@ title: Bone1Start
 ---
 <<once>>
     Xolotl: See those holes?
-    Xolotl: I can sense my phalange in one of these holes. The thief must have hidden it here.
-    Press X while standing next to a dark patch to dig!
+    Xolotl: I can sense my phalange lying in one of them. The thief must have hidden it here, that pest.
+    Xolotl: Perhaps you can use your digging ability to unearth it.
 <<endonce>>
 ===
 
@@ -133,13 +164,23 @@ title: WormReveal
 ---
 Xolotl: Ah, a worm. In my current state, I'm afraid I cannot assist you in defeating it.
 Xolotl: Attack carefully while dodging its attacks.
-Press X to attack and Z to dash.
+Press X to attack.
+===
+
+title: Bone1NotDone
+---
+<<if $numBones == 3 and !$hasBone>>
+    Xolotl: There's a bone in one of these holes. Let's find it first before moving on.
+<<elseif $numBones == 2 and $hasBone>>
+    Xolotl: I appreciate the enthusiasm, but you're already holding a bone. Let's take it back to the pit first.
+<<else>>
+<<endif>>
 ===
 
 title: Bone1After
 ---
 <<once>>
-    Xolotl: Well done! Now take it back to the pit.
+    Xolotl: You found one! Let's take it back to the pit.
     Press C to pick up.
     <<set $numBones to $numBones - 1>>
 <<endonce>>

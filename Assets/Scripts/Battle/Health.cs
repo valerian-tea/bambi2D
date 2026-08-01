@@ -12,9 +12,17 @@ public class Health : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isFrontHit)
     {
-        animator.SetTrigger("damage");
+        if (isFrontHit)
+        {
+            animator.SetInteger("attackID", 1);
+        }
+        else
+        {
+            animator.SetInteger("attackID", 2);
+        }
+        animator.SetTrigger("attack");
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
         if (currentHealth <= 0)

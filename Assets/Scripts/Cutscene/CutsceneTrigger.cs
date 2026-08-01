@@ -8,7 +8,7 @@ public class CutsceneTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Player entered cutscene trigger.");
+        Debug.Log("Player entered cutscene trigger, " + other.name + ".");
         if (other.CompareTag("Player"))
         {
             director.Play();

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Tilemap_AutoTile_Rock 3_55
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: 2018242328, guid: 781ab5c7185f049ea91a06016713003f, type: 3}
+  m_Sprite: {fileID: -1291311535, guid: 781ab5c7185f049ea91a06016713003f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

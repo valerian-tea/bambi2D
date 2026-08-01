@@ -115,10 +115,6 @@ public class PlayerController : MonoBehaviour
             else
                 rb.linearVelocityX = -dashForce;
 
-            Debug.Log(
-                $"rb.linearVelocityX: {rb.linearVelocityX}, rb.linearVelocityY: {rb.linearVelocityY}"
-            );
-
             return;
         }
         else
