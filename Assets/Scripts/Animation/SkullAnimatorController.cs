@@ -29,10 +29,40 @@ public class SkullAnimatorController : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-    [YarnCommand("show_skull")]
-    public void ShowSprite()
+    [YarnCommand("fade_skull")]
+    public void ShowSprite(float targetAlpha)
     {
-        spriteRenderer.enabled = true;
+        StartCoroutine(FadeSpriteAlpha(targetAlpha));
+    }
+
+    private IEnumerator FadeSpriteAlpha(float targetAlpha)
+    {
+        float startValue = spriteRenderer.color.a;
+        float timeElapsed = 0f;
+        float fadeDuration = 1.0f; // Duration of the fade effect in seconds
+
+        while (timeElapsed < fadeDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            float newAlpha = Mathf.Lerp(startValue, targetAlpha, timeElapsed / fadeDuration);
+            Color newColor = new Color(
+                spriteRenderer.color.r,
+                spriteRenderer.color.g,
+                spriteRenderer.color.b,
+                newAlpha
+            );
+            spriteRenderer.color = newColor;
+            yield return null;
+        }
+
+        // Ensure the final alpha value is set
+        Color finalColor = new Color(
+            spriteRenderer.color.r,
+            spriteRenderer.color.g,
+            spriteRenderer.color.b,
+            targetAlpha
+        );
+        spriteRenderer.color = finalColor;
     }
 
     [YarnCommand("move_skull")]

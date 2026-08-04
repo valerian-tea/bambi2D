@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8280798602275123823}
   - component: {fileID: 5399637630121801068}
   - component: {fileID: 4831692323219351317}
+  - component: {fileID: 7120361066085578535}
   m_Layer: 0
   m_Name: DialogueBlock
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2501875526485604956}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.499939, y: -10.799988, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70cde70ac8c454758a0768a3a7f8cfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  dialogueNode: 
+  dialogueNode: Bone1NotDone
 --- !u!61 &5399637630121801068
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,3 +140,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 8}
   m_EdgeRadius: 0
+--- !u!114 &7120361066085578535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501875526485604956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9c15ac6648447ac9ee5595a2560b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectCommands

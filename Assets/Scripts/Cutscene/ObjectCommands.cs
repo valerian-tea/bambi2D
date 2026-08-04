@@ -19,6 +19,12 @@ public class ObjectCommands : MonoBehaviour
         }
     }
 
+    [YarnCommand("disable_object")]
+    public void DisableObject()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     [YarnCommand("destroy_item")]
     public void DestroyItem(GameObject item)
     {

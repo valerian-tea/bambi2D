@@ -57,12 +57,13 @@ title: SkullIntro
     <<wait 2.0>>
     ???: Or perhaps, are you the dashing savior here to rescue me from my chains?
     ???: Tell me, what are you here for?
-    <<fade_light GlobalLight 1.0>>
-    <<fade_light PlayerLight 1.0>>
+    <<fade_light GlobalLight 1>>
+    <<fade_light PlayerLight 1>>
     ???: ...
     ???: Ah. Not another hopeless one. 
+    <<set_fire_animation Fire ebb>>
+    <<fade_skull Skull 1>>
     <<hide_fire Fire>>
-    <<show_skull Skull>>
     <<fade_light SkullLight 1>>
     ???: My name is Xolotl. This place you've found yourself in is my temple. Or rather, what remains of it.
     Xolotl: I suggest you turn back, small one. This is no place to wander alone.
@@ -101,7 +102,10 @@ title: SkullIntro
 title: OpenWall
 ---
 <<if $hasMetSkull>>
-    <<play_timeline CT_OpenWall>>
+    <<once>>
+        <<play_timeline CT_OpenWall>>
+        <<wait 1.0>>
+    <<endonce>>
 <<endif>>
 ===
 
@@ -118,7 +122,6 @@ title: FetchBone
     Xolotl: Lucky for both of us, they're my smallest bones, so they should be doable for a being of your... stature.
     <<disable_UI Commands FireMap>>
 <<endonce>>
-<<disable_collider Cutscene1>>
 ===
 
 title: FoundBone
@@ -154,9 +157,7 @@ title: BonesMap
 title: Bone1Start
 ---
 <<once>>
-    Xolotl: See those holes?
-    Xolotl: I can sense my phalange lying in one of them. The thief must have hidden it here, that pest.
-    Xolotl: Perhaps you can use your digging ability to unearth it.
+    Xolotl: I can sense a bone in here somewhere. The thief must have hidden it, that pest.
 <<endonce>>
 ===
 
