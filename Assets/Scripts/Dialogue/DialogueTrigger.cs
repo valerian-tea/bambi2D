@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        dialogueRunner = FindFirstObjectByType<DialogueRunner>();
+        dialogueRunner = FindAnyObjectByType<DialogueRunner>();
         if (dialogueRunner == null)
         {
             Debug.LogError("DialogueRunner not found in the scene.");

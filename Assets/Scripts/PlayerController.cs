@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Dash Settings")]
     private float originalGravity;
-    private float originalYVelocity;
 
     private bool canDash = true;
     private bool isDashing;
@@ -88,7 +87,6 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocityY = jumpForce;
         animator.SetInteger("actionID", 0);
         animator.SetTrigger("action");
-        // animator.SetTrigger("jump");
     }
 
     bool CheckIfGrounded()
@@ -100,6 +98,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(rb.gravityScale);
         if (!isMovementEnabled)
         {
             movementInputX = 0f;
@@ -117,13 +116,16 @@ public class PlayerController : MonoBehaviour
 
             return;
         }
+        else if (rb.linearVelocityY < 0)
+        {
+            rb.gravityScale = originalGravity * 2f; // Increase gravity for faster fall
+        }
         else
         {
             rb.gravityScale = originalGravity;
-            originalYVelocity = rb.linearVelocityY;
         }
 
-        bool isGrounded = CheckIfGrounded(); // Your existing ground check
+        bool isGrounded = CheckIfGrounded();
 
         if (movementInputX != 0)
             rb.linearVelocityX = movementInputX * speed;
@@ -140,6 +142,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
+            rb.gravityScale = originalGravity;
             if (Mathf.Abs(movementInputX) != 0)
                 animator.SetBool("isWalking", true);
             else

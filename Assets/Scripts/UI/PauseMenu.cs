@@ -5,24 +5,31 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
+    private CanvasGroup canvasGroup;
+
+    void Start()
+    {
+        if (pauseMenuUI != null)
+        {
+            canvasGroup = pauseMenuUI.GetComponent<CanvasGroup>();
+        }
+    }
 
     void Update()
     {
         if (gameIsPaused)
         {
-            Debug.Log("Pause state YES");
-            pauseMenuUI.SetActive(true); // Show the menu
+            canvasGroup.alpha = 1f; // Show the menu
+            canvasGroup.interactable = true;
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
         }
         else
         {
-            Debug.Log("Pause state NO");
-            pauseMenuUI.SetActive(false); // Show the menu
+            canvasGroup.alpha = 0f; // Hide the menu
+            canvasGroup.interactable = false;
             Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
     }
 

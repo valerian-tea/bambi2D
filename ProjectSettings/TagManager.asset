@@ -57,6 +57,9 @@ TagManager:
   - name: Ground
     uniqueID: 2376472497
     locked: 0
+  - name: Obstacles
+    uniqueID: 77862847
+    locked: 0
   - name: Skull
     uniqueID: 1132919347
     locked: 0

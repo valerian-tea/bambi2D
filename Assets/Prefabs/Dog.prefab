@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 3247337077504746719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,7 +118,8 @@ GameObject:
   - component: {fileID: 3916786142289786301}
   - component: {fileID: 7722353164277879159}
   - component: {fileID: 8338531834184102260}
-  - component: {fileID: 3216867910432680598}
+  - component: {fileID: 3006985308393315133}
+  - component: {fileID: 3630433021695494964}
   m_Layer: 8
   m_Name: Dog
   m_TagString: Player
@@ -156,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e185785f3f64aafae352bdc59280c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 5
-  jumpForce: 25
+  speed: 7
+  jumpForce: 28
   groundCheck: {fileID: 6611407145772528611}
   groundCheckRadius: 0.1
   groundLayer:
@@ -267,14 +268,14 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 727268361
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e4c793a7c26614bf8a4692a6a83f0213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -292,7 +293,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 6
   m_LinearDamping: 5
   m_AngularDamping: 0.05
   m_GravityScale: 5
@@ -341,8 +342,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.037494987, y: -0.081413746}
-  m_Size: {x: 0.4736417, y: 0.5857272}
+  m_Offset: {x: 0.00399971, y: -0.072422504}
+  m_Size: {x: 0.7221203, y: 0.8524656}
   m_Direction: 0
 --- !u!114 &3916786142289786301
 MonoBehaviour:
@@ -383,12 +384,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickupObject
   mouth: {fileID: 1770370204354282469}
   mouthOffset: {x: 0.3, y: -0.12, z: 0}
-  pickupRadius: 0.5
+  pickupRadius: 0.8
   pickupLayer:
     serializedVersion: 2
     m_Bits: 128
   variableStorage: {fileID: 0}
---- !u!114 &3216867910432680598
+--- !u!114 &3006985308393315133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -397,10 +398,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 8920437550801904861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62efaada0f3bd4569b5d2a9d54e1999e, type: 3}
+  m_Script: {fileID: 11500000, guid: d1862b4ebf36842c9a4fa98a1c777073, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  pauseMenuUI: {fileID: 0}
+--- !u!114 &3630433021695494964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8920437550801904861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ff6a86fff92487e985922e34a9c7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 8
+  invincibilityDuration: 1.5
+  flashColor: {r: 1, g: 1, b: 1, a: 0.5}
 --- !u!1 &9205156662409177263
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,3 +508,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3773c4383d67946499f92be2c41213fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackHitbox
+  damage: 10

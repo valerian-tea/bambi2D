@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class AttackHitbox : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public int damage = 10;
+
+    private void OnTriggerStay2D(Collider2D other)
     {
         Health enemyHealth = other.GetComponent<Health>();
         if (other.CompareTag("Enemy") || other.CompareTag("Player"))
         {
-            enemyHealth.TakeDamage(10, CalculateHitDirection(other));
+            enemyHealth.TakeDamage(damage, CalculateHitDirection(other));
             Debug.Log("Hit: " + other.name);
         }
     }

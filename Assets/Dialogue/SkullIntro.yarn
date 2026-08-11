@@ -9,7 +9,7 @@ title: BasicMove
 ---
 <<once>>
     Wisp: Little lost one... come this way!
-    WASD to move. Space to Jump.
+    [i]WASD to move. Space to Jump.[/i]
 <<endonce>>
 ===
 
@@ -17,7 +17,7 @@ title: Dig
 ---
 <<once>>
     Wisp: Your path is blocked up ahead... but you have the power to get through it!
-    X to Dig.
+    [i]X to Attack/Dig.[/i]
 <<endonce>>
 ===
 
@@ -25,7 +25,7 @@ title: Dash
 ---
 <<once>>
     Wisp: A treacherous path ahead... but the faster you go, the easier it'll be.
-    Z to Dash.
+    [i]Z to Dash.[/i]
 <<endonce>>
 ===
 
@@ -33,8 +33,8 @@ title: Dash
 title: DigDown
 ---
 <<once>>
-    Wisp: Come here, down this hole! An adventure awaits...
-    Down + X to Dig downwards.
+    Wisp: Down this hole! An adventure awaits...
+    [i]Down + X to Dig downwards.[/i]
 <<endonce>>
 ===
 
@@ -42,68 +42,68 @@ title: SkullIntro
 ---
 <<once>>
     ???: Who goes there?
-    <<show_fire Fire>>
-    <<set_fire_animation Fire grow>>
-    <<set_fire_animation Fire fall>>
-    <<set_fire_animation Fire grow>>
-    <<wait 0.5>>
-    <<set_fire_animation Fire knight>>
-    <<wait 2.0>>
-    ???: Brave hero, have you come for the ultimate weapon to slay a demon?
-    <<set_fire_animation Fire med>>
-    <<wait 2.0>>
-    ???: Or for the antidote to an incurable disease?
-    <<set_fire_animation Fire lady>>
-    <<wait 2.0>>
-    ???: Or perhaps, are you the dashing savior here to rescue me from my chains?
-    ???: Tell me, what are you here for?
-    <<fade_light GlobalLight 1>>
-    <<fade_light PlayerLight 1>>
-    ???: ...
-    ???: Ah. Not another hopeless one. 
-    <<set_fire_animation Fire ebb>>
-    <<fade_skull Skull 1>>
-    <<hide_fire Fire>>
-    <<fade_light SkullLight 1>>
-    ???: My name is Xolotl. This place you've found yourself in is my temple. Or rather, what remains of it.
-    Xolotl: I suggest you turn back, small one. This is no place to wander alone.
-    <<wait 1.0>>
-    <<set_skull_animation Skull bored>>
-    Xolotl: (Can it understand me?)
-    <<wait 1.0>>
-    <<set_skull_animation Skull exasp>>
-    Xolotl: (Or is it feigning ignorance?)
-    // <optional: dog itch>
-    <<set_skull_animation Skull angry>>
-    Xolotl: (Gah! A touch nut to crack, I see.)
-    Xolotl: Out with it! Do you have a wish or not?
-    <<set_dog_animation Dog bark>>
-    <<wait 1.0>>
-    <<set_skull_animation Skull neutral>>
-    Xolotl: Oh? 
-    Xolotl: I suppose it is odd for a lowly creature like yourself to end up here, all alone.
-    Xolotl: What are you searching for, small one?
-    <<set_skull_animation Skull bored>>
-    Xolotl: What have you lost?
-    <<set_dog_animation Dog sad>>
-    <<wait 1.0>>
-    Xolotl: ...
-    <<set_skull_animation Skull neutral>>
-    Xolotl: Well, worry not. I can help you find it. As soon as you help me with one small favor, that is.
-    <<set_dog_animation Dog wag>>
-    <<wait 1.0>>
-    Xolotl: Come with me.
-    <<play_timeline CT_Pit>>
+    // <<show_fire Fire>>
+    // <<set_fire_animation Fire grow>>
+    // <<set_fire_animation Fire fall>>
+    // <<set_fire_animation Fire grow>>
+    // <<wait 0.5>>
+    // <<set_fire_animation Fire knight>>
+    // <<wait 2.0>>
+    // ???: Brave hero, have you come for the ultimate weapon to slay a demon?
+    // <<set_fire_animation Fire med>>
+    // <<wait 2.0>>
+    // ???: Or for the antidote to an incurable disease?
+    // <<set_fire_animation Fire lady>>
+    // <<wait 2.0>>
+    // ???: Or perhaps, are you the dashing savior here to rescue me from my chains?
+    // ???: Tell me, what are you here for?
+    // <<fade_light GlobalLight 1>>
+    // <<fade_light PlayerLight 1>>
+    // ???: ...
+    // ???: Ah. Not another hopeless one. 
+    // <<set_fire_animation Fire ebb>>
+    // <<fade_sprite Skull 1>>
+    // <<hide_fire Fire>>
+    // <<fade_light SkullLight 1>>
+    // ???: My name is Xolotl. This place you've found yourself in is my temple. Or rather, what remains of it.
+    // Xolotl: I suggest you turn back, small one. This is no place to wander alone.
+    // <<wait 1.0>>
+    // <<set_animation Skull 2>>
+    // Xolotl: (Can it understand me?)
+    // <<wait 1.0>>
+    // <<set_animation Skull 3>>
+    // Xolotl: (Or is it feigning ignorance?)
+    // // <optional: dog itch>
+    // <<set_animation Skull 1>>
+    // Xolotl: (Gah! A touch nut to crack, I see.)
+    // Xolotl: Out with it! Do you have a wish or not?
+    // <<set_animation Dog 1>>
+    // <<wait 1.0>>
+    // <<set_animation Skull 0>>
+    // Xolotl: Oh? 
+    // Xolotl: I suppose it is odd for a lowly creature like yourself to end up here, all alone.
+    // Xolotl: What are you searching for, small one?
+    // <<set_animation Skull 2>>
+    // Xolotl: What have you lost?
+    // <<set_animation Dog 2>>
+    // <<wait 1.0>>
+    // Xolotl: ...
+    // <<set_animation Skull 0>>
+    // Xolotl: Well, worry not. I can help you find it. As soon as you help me with one small favor, that is.
+    // <<set_animation Dog 0>>
+    // <<wait 1.0>>
+    // Xolotl: Come with me.
+    <<play_timeline T_Pit>>
     <<set $hasMetSkull = true>>
-
+    <<destroy_item Commands SkullIntro>>
 <<endonce>>
 ===
 
-title: OpenWall
+title: OpenWall1
 ---
 <<if $hasMetSkull>>
     <<once>>
-        <<play_timeline CT_OpenWall>>
+        <<play_timeline T_OpenWall1>>
         <<wait 1.0>>
     <<endonce>>
 <<endif>>
@@ -124,40 +124,46 @@ title: FetchBone
 <<endonce>>
 ===
 
-title: FoundBone
----
-Xolotl: Well done, now bring it back to the pit.
-<<jump BonesMap>>
-===
-
 title: BonesMap
 ---
 <<if $hasBone>>
+    <<set $numBones = dec($numBones)>>
+    <<set $hasBone = false>>
     <<if $numBones == 2>>
-        <<disable_collider Bone1NotDone>>
+        <<destroy_item Commands Phalange>>
+    <<elseif $numBones == 1>>>>
+        <<destroy_item Commands Vertebra>>
+        <<else>>>>
+        <<destroy_item Commands Horn>>
     <<endif>>
-    <<destroy_item Commands Phalange>>
-    <<set $hasBone to false>>
-    <<set_skull_animation Skull bored>>
+    // <<set_animation Skull 2>>
     Xolotl: Ah, I feel my power returning.
-    <<set_skull_animation Skull neutral>>
-    <<enable_UI Commands FireMap>>
-    {$numBones} bones left to find.
-    <<disable_UI Commands FireMap>>
-<<else>>
-    <<enable_UI Commands FireMap>>
-    {$numBones} bones left to find.
-    <<disable_UI Commands FireMap>>
+    // <<set_animation Skull 0>>
 <<endif>>
-
-
+<<enable_UI Commands FireMap>>
+Xolotl: There are still {$numBones} bones left to find.
+<<disable_UI Commands FireMap>>
 
 ===
 
 title: Bone1Start
 ---
 <<once>>
-    Xolotl: I can sense a bone in here somewhere. The thief must have hidden it, that pest.
+    <<set_animation Thief 1>>
+    <<wait 0.5>>
+    <<set_animation Dog 4>>
+    <<set_animation Thief 2>>
+    <<wait 1.0>>
+    Xolotl: Gah! The thief!
+    <<play_timeline T_Thief1>>
+<<endonce>>
+===
+
+title: Bone1Start2
+---
+<<once>>
+    Xolotl: It got away...
+    Xolotl: You caught it by surprise, so it may have dropped a bone somewhere.
 <<endonce>>
 ===
 
@@ -181,10 +187,30 @@ title: Bone1NotDone
 title: Bone1After
 ---
 <<once>>
-    Xolotl: You found one! Let's take it back to the pit.
-    Press C to pick up.
-    <<set $numBones to $numBones - 1>>
+    Xolotl: You found it! Let's take it back to the pit.
+    [i]Press C to pick up.[/i]
+    <<set $hasBone= true>>
 <<endonce>>
+===
+
+title: OpenWall2_Start
+---
+<<if $numBones == 2>>
+    <<once>>
+        Xolotl: There it is again!
+        <<play_timeline T_OpenWall2>>
+        <<wait 1.0>>
+    <<endonce>>
+<<endif>>
+===
+
+title: OpenWall2_End
+---
+
+<<once>>
+    Xolotl: It's so fast! We've got to trap it if we want the bone it's guarding.
+<<endonce>>
+
 ===
 
 title: AllBonesDone
@@ -195,7 +221,7 @@ Xolotl: Surprised to see a fellow canine?
 Xolotl: I am taking this form to be more easily comprehensible to you. Getting on your level, so to speak.
 Xolotl: I thank you for restoring my power. As promised, I will grant you any wish, as long as it is in my ability. 
 Xolotl: Tell me, what is your wish?
-<<set_dog_animation Dog bark>>
+<<set_animation Dog 1>>
 Xolotl: Hmm? A lost girl, you say?
 Xolotl: That can be arranged. Do you have a strong memory of this girl? One that carries an intense emotion, whether that be happiness, sadness, anger.
 Xolotl: Close your eyes. Picture it in your head.
@@ -232,7 +258,7 @@ Huehuecoyotl: WE can't intervene in human affairs. But that doesn't mean HE can'
 Huehuecoyotl: Why don't we have this pup enter her Dream Mind? He's not a god so it should be fine, right?
 Xolotl: What? He's just a little dog. Frankly, I'm still not sure how he is got here.
 Xolotl: The Dream Mind is a dangerous place. If he were to descend, the chances are high that he would not come back.
-<<set_dog_animation Dog bark>>
+<<set_animation Dog 1>>
 Xolotl: What? You want to do it, knowing the risks?
 Huehuecoyotl: That's the spirit, pup!
 //dog wags tail
@@ -272,7 +298,7 @@ Huehuecoyotl: Why that one? There's only one marble in there.
 Xolotl: I doubt the little one can handle the deeper pits yet. There is no point charging ahead only to fail immediately.
 Huehuecoyotl: Hmph, always so careful.
 Xolotl: Well, little one? Shall I send you to the first pit?
-<<set_dog_animation Dog bark>>
+<<set_animation Dog 1>>
 Xolotl: brace yourself.
 Huehuecoyotl: I'm rooting for ya, pup!
 //<X howls. Dog envelopes in green light and floats in sky. Screen whites out>

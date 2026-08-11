@@ -3,16 +3,10 @@ using Yarn.Unity;
 
 public class ObjectCommands : MonoBehaviour
 {
-    private Collider2D collider;
-
-    void Start()
-    {
-        collider = GetComponent<Collider2D>();
-    }
-
     [YarnCommand("disable_collider")]
-    public void DisableCollider()
+    public void DisableCollider(GameObject item)
     {
+        Collider2D collider = item.GetComponent<Collider2D>();
         if (collider != null)
         {
             collider.enabled = false;
@@ -20,9 +14,9 @@ public class ObjectCommands : MonoBehaviour
     }
 
     [YarnCommand("disable_object")]
-    public void DisableObject()
+    public void DisableObject(GameObject item)
     {
-        this.gameObject.SetActive(false);
+        item.SetActive(false);
     }
 
     [YarnCommand("destroy_item")]

@@ -2,39 +2,57 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float maxHealth = 40f;
-    private float currentHealth;
-    private Animator animator;
+    [Header("Health Settings")]
+    public int maxHealth = 40;
+    protected int currentHealth;
+    protected Animator animator;
+    protected bool isAlive = true;
 
-    void Start()
+    protected virtual void Start()
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
     }
 
-    public void TakeDamage(float damage, bool isFrontHit)
+    public virtual void TakeDamage(int damage, bool isFrontHit)
     {
-        if (isFrontHit)
-        {
-            animator.SetInteger("attackID", 1);
-        }
-        else
-        {
-            animator.SetInteger("attackID", 2);
-        }
-        animator.SetTrigger("attack");
+        if (!isAlive)
+            return;
+
         currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        PlayHitAnimation(isFrontHit);
         Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
-        if (currentHealth <= 0)
+
+        if (currentHealth <= 0f)
         {
             Die();
         }
     }
 
-    void Die()
+    protected virtual void PlayHitAnimation(bool isFrontHit)
     {
-        // Handle death logic here (e.g., play animation, disable character, etc.)
-        Debug.Log($"{gameObject.name} has died.");
+        if (animator == null)
+            return;
+
+        animator.SetInteger("attackID", isFrontHit ? 1 : 2);
+        animator.SetTrigger("attack");
+    }
+
+    protected virtual void Die()
+    {
+        isAlive = false;
         Destroy(gameObject);
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public bool IsAlive()
+    {
+        return isAlive;
     }
 }
