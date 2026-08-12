@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -9,6 +11,7 @@ public class Digger : MonoBehaviour
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    public static event Action OnDigAction;
 
     void Start()
     {
@@ -64,5 +67,6 @@ public class Digger : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         Vector3Int coordinate = groundTilemap.WorldToCell(worldPos);
         groundTilemap.SetTile(coordinate, null);
+        OnDigAction?.Invoke();
     }
 }

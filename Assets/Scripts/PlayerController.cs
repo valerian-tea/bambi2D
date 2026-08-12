@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(rb.gravityScale);
         if (!isMovementEnabled)
         {
             movementInputX = 0f;

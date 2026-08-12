@@ -28,7 +28,6 @@ public class HeartBar : MonoBehaviour
             playerHealth = FindAnyObjectByType<PlayerHealth>();
 
         PlayerHealth.OnHealthChanged += DrawHearts;
-        Debug.Log("Subscribed to OnHealthChanged event in HeartBar.");
     }
 
     private void OnDisable()
@@ -57,12 +56,6 @@ public class HeartBar : MonoBehaviour
 
     public void DrawHearts()
     {
-        Debug.Log(
-            "Drawing hearts. Current health: "
-                + playerHealth.GetCurrentHealth()
-                + ", Max health: "
-                + playerHealth.maxHealth
-        );
         float heartRemainder = maxHealth % 2;
         int maxHeartCount = Mathf.FloorToInt(maxHealth / 2f + heartRemainder);
         ClearHeartImages();
