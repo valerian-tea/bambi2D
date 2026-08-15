@@ -73,8 +73,6 @@ public class FallingBlock : MonoBehaviour
             }
         }
 
-        Debug.Log("Positions above topmost point: " + tileList.Count);
-
         return tileList.ToArray();
     }
 

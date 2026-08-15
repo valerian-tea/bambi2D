@@ -7,6 +7,10 @@ public class AttackStateSO : EnemyStateSO
 
     public override void UpdateState(EnemyAI enemy)
     {
+        if (enemy.isAttacking)
+        {
+            return;
+        }
         if (enemy.IsTargetInAttackRange())
         {
             enemy.TriggerAttack();

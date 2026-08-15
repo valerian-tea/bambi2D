@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private float dashForce = 10f;
 
     [Header("Attack Settings")]
-    public float attackRange = 1.5f;
     public LayerMask enemyLayer;
     public GameObject attackHitbox;
 

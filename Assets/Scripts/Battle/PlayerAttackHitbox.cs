@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class AttackHitbox : MonoBehaviour
+public class PlayerAttackHitbox : MonoBehaviour
 {
     public int damage = 10;
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Health enemyHealth = other.GetComponent<Health>();
-        if (other.CompareTag("Enemy") || other.CompareTag("Player"))
+        if (other.CompareTag("Enemy"))
         {
             enemyHealth.TakeDamage(damage, CalculateHitDirection(other));
             Debug.Log("Hit: " + other.name);

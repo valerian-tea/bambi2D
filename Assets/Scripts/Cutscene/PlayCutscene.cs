@@ -5,10 +5,12 @@ using Yarn.Unity;
 public class PlayCutscene : MonoBehaviour
 {
     private PlayableDirector director;
+    private Collider2D cutsceneTrigger;
 
     void Awake()
     {
         director = GetComponent<PlayableDirector>();
+        cutsceneTrigger = GetComponent<Collider2D>();
     }
 
     [YarnCommand("play_timeline")]
@@ -22,7 +24,7 @@ public class PlayCutscene : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             director.Play();
-            gameObject.SetActive(false);
+            cutsceneTrigger.enabled = false;
         }
     }
 }

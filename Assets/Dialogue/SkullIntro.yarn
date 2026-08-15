@@ -8,7 +8,7 @@
 title: BasicMove
 ---
 <<once>>
-    Wisp: Little lost one... come this way!
+    Wisp: Little lost one... this way!
     [i]WASD to move. Space to Jump.[/i]
 <<endonce>>
 ===
@@ -24,7 +24,7 @@ title: Dig
 title: Dash
 ---
 <<once>>
-    Wisp: A treacherous path ahead... but the faster you go, the easier it'll be.
+    Wisp: A treacherous path ahead... the faster you go, the easier it'll be.
     [i]Z to Dash.[/i]
 <<endonce>>
 ===
@@ -33,7 +33,7 @@ title: Dash
 title: DigDown
 ---
 <<once>>
-    Wisp: Down this hole! An adventure awaits...
+    Wisp: Down this way, an adventure awaits...
     [i]Down + X to Dig downwards.[/i]
 <<endonce>>
 ===
@@ -169,9 +169,8 @@ title: Bone1Start2
 
 title: WormReveal
 ---
-Xolotl: Ah, a worm. In my current state, I'm afraid I cannot assist you in defeating it.
-Xolotl: Attack carefully while dodging its attacks.
-Press X to attack.
+Xolotl: Ah, a worm. It may not look the smartest, but don't let your guard down.
+[i]Press X to attack.[/i]
 ===
 
 title: Bone1NotDone
@@ -195,13 +194,13 @@ title: Bone1After
 
 title: OpenWall2_Start
 ---
-<<if $numBones == 2>>
-    <<once>>
-        Xolotl: There it is again!
-        <<play_timeline T_OpenWall2>>
-        <<wait 1.0>>
-    <<endonce>>
-<<endif>>
+// <<if $numBones == 2>>
+<<once>>
+    Xolotl: There it is again!
+    <<play_timeline T_OpenWall2>>
+    <<wait 1.0>>
+<<endonce>>
+// <<endif>>
 ===
 
 title: OpenWall2_End

@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     public float attackCooldown = 3.0f;
     public float attackRange = 1.5f;
     private float attackTimer = 0f;
+    public bool isAttacking = false;
 
     private void Start()
     {
@@ -53,13 +54,22 @@ public class EnemyAI : MonoBehaviour
 
     public void AttackTarget()
     {
-        animator.SetBool("isAttacking", true);
+        isAttacking = true;
+        Debug.Log("Enemy is attacking!");
+        animator.SetTrigger("attack");
+        animator.SetInteger("attackID", 0);
+    }
+
+    public void EndAttack()
+    //animation event
+    {
+        Debug.Log("Attack animation ended.");
+        isAttacking = false;
     }
 
     public void Idle()
     {
         Debug.Log("Enemy is idling.");
-        animator.SetBool("isAttacking", false);
     }
 
     public bool CanAttack()
@@ -71,7 +81,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (!CanAttack())
         {
-            animator.SetBool("isAttacking", false);
             return;
         }
 
