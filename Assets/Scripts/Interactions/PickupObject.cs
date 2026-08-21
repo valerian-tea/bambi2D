@@ -5,7 +5,7 @@ using Yarn.Unity;
 public class PickupObject : MonoBehaviour
 {
     public Transform mouth;
-    public Vector3 mouthOffset = new Vector3(0.3f, -0.12f, 0f);
+    public Vector2 mouthOffset = new Vector2(0.3f, -0.12f);
     public float pickupRadius = 0.5f;
     public LayerMask pickupLayer;
     public VariableStorageBehaviour variableStorage;
@@ -94,7 +94,7 @@ public class PickupObject : MonoBehaviour
 
     private void AlignItem()
     {
-        Vector3 currentOffset = mouthOffset;
+        Vector2 currentOffset = mouthOffset;
         if (playerSprite.flipX)
             currentOffset.x *= -1f;
         Debug.Log($"Aligning item to mouth with offset {currentOffset}");

@@ -131,9 +131,9 @@ title: BonesMap
     <<set $hasBone = false>>
     <<if $numBones == 2>>
         <<destroy_item Commands Phalange>>
-    <<elseif $numBones == 1>>>>
+    <<elseif $numBones == 1>>
         <<destroy_item Commands Vertebra>>
-        <<else>>>>
+    <<else>>
         <<destroy_item Commands Horn>>
     <<endif>>
     // <<set_animation Skull 2>>

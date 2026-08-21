@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
     private Color originalColor;
 
     [Header("Item Drop Settings")]
+    public SpriteRenderer itemSprite;
     public GameObject itemPrefab;
 
     protected virtual void Start()
@@ -85,10 +86,15 @@ public class Health : MonoBehaviour
     protected virtual void Die()
     {
         isAlive = false;
+        if (itemSprite != null)
+        {
+            itemSprite.enabled = true;
+        }
         if (itemPrefab != null)
         {
             Instantiate(itemPrefab, transform.position, Quaternion.identity);
         }
+
         Destroy(gameObject);
     }
 

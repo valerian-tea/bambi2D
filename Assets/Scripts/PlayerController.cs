@@ -42,8 +42,8 @@ public class PlayerController : MonoBehaviour
     private float dashForce = 10f;
 
     [Header("Attack Settings")]
-    public LayerMask enemyLayer;
     public GameObject attackHitbox;
+    public Vector2 hitboxOffset = new Vector2(1f, 0f);
 
     void Start()
     {
@@ -148,8 +148,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void AlignHitbox()
+    {
+        if (attackHitbox != null)
+        {
+            Vector2 currentOffset = hitboxOffset;
+            if (spriteRenderer.flipX)
+                currentOffset.x *= -1f;
+            Debug.Log($"Aligning hitbox with offset {currentOffset}");
+            attackHitbox.transform.localPosition = currentOffset;
+        }
+    }
+
     public void OnAttack(InputValue value)
     {
+        AlignHitbox();
         animator.SetInteger("attackID", 0);
         animator.SetTrigger("attack");
     }
