@@ -132,7 +132,7 @@ title: BonesMap
     <<if $numBones == 2>>
         <<destroy_item Commands Phalange>>
     <<elseif $numBones == 1>>
-        <<destroy_item Commands Vertebra>>
+        <<destroy_item Commands Disc>>
     <<else>>
         <<destroy_item Commands Horn>>
     <<endif>>

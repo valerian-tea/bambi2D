@@ -5,7 +5,6 @@ using Yarn.Unity;
 public class PickupObject : MonoBehaviour
 {
     public Transform mouth;
-    public Vector2 mouthOffset = new Vector2(0.3f, -0.12f);
     public float pickupRadius = 0.5f;
     public LayerMask pickupLayer;
     public VariableStorageBehaviour variableStorage;
@@ -24,10 +23,10 @@ public class PickupObject : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (mouth.childCount > 0)
-        {
-            AlignItem();
-        }
+        // if (mouth.childCount > 0)
+        // {
+        //     AlignItem();
+        // }
     }
 
     public void OnCrouch(InputValue value)
@@ -68,6 +67,7 @@ public class PickupObject : MonoBehaviour
         carriedRb = carriedObject.GetComponent<Rigidbody2D>();
 
         carriedObject.transform.SetParent(mouth);
+        carriedObject.transform.localPosition = Vector3.zero;
         carriedRb.simulated = false;
         carriedCollider.isTrigger = true;
 
@@ -92,15 +92,15 @@ public class PickupObject : MonoBehaviour
         }
     }
 
-    private void AlignItem()
-    {
-        Vector2 currentOffset = mouthOffset;
-        if (playerSprite.flipX)
-            currentOffset.x *= -1f;
-        Debug.Log($"Aligning item to mouth with offset {currentOffset}");
-        carriedSprite.flipX = playerSprite.flipX;
-        carriedObject.transform.localPosition = currentOffset;
-    }
+    // private void AlignItem()
+    // {
+    //     Vector2 currentOffset = mouthOffset;
+    //     if (playerSprite.flipX)
+    //         currentOffset.x *= -1f;
+    //     Debug.Log($"Aligning item to mouth with offset {currentOffset}");
+    //     carriedSprite.flipX = playerSprite.flipX;
+    //     carriedObject.transform.localPosition = currentOffset;
+    // }
 
     void OnDrawGizmosSelected()
     {

@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    [Header("Settings")]
-    private SpriteRenderer spriteRenderer;
-    private GameObject player;
-
     [Header("State Configuration")]
     [SerializeField]
     private EnemyStateSO initialState;
@@ -25,13 +21,11 @@ public class EnemyAI : MonoBehaviour
     public float attackRange = 1.5f;
     private float attackTimer = 0f;
     public bool isAttacking = false;
-    public GameObject attackHitbox;
-    public Vector2 hitboxOffset = new Vector2(1f, 0f);
+    private GameObject player;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
         if (initialState != null)
         {
@@ -68,7 +62,6 @@ public class EnemyAI : MonoBehaviour
     public void AttackTarget()
     {
         isAttacking = true;
-        AlignHitbox();
         Debug.Log("Enemy is attacking!");
         animator.SetTrigger("attack");
         animator.SetInteger("attackID", 0);
@@ -79,17 +72,6 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log("Attack animation ended.");
         isAttacking = false;
-    }
-
-    private void AlignHitbox()
-    {
-        if (attackHitbox != null)
-        {
-            Vector2 currentOffset = hitboxOffset;
-            if (spriteRenderer.flipX)
-                currentOffset.x *= -1f;
-            attackHitbox.transform.localPosition = currentOffset;
-        }
     }
 
     public void Idle()
@@ -134,10 +116,17 @@ public class EnemyAI : MonoBehaviour
 
     private void FaceTarget(Transform target)
     {
-        if (target == null || spriteRenderer == null)
+        if (target == null)
             return;
 
         bool targetIsLeft = target.position.x < transform.position.x;
-        spriteRenderer.flipX = targetIsLeft;
+        if (targetIsLeft)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }

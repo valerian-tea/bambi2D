@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Yarn.Unity;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,9 +20,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float movementInputX;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
     private PlayerInput input;
     private bool isMovementEnabled = true;
+    public bool isFacingRight = true;
+
+    [Header("Camera Settings")]
+    public CameraFollow cameraFollow;
 
     [Header("Jump Settings")]
     private bool isGrounded;
@@ -41,14 +43,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float dashForce = 10f;
 
-    [Header("Attack Settings")]
-    public GameObject attackHitbox;
-    public Vector2 hitboxOffset = new Vector2(1f, 0f);
-
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         input = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
         originalGravity = rb.gravityScale;
@@ -102,12 +99,22 @@ public class PlayerController : MonoBehaviour
             movementInputX = 0f;
         }
 
+        float yRotation = transform.eulerAngles.y;
+        if (yRotation == 0)
+        {
+            isFacingRight = true;
+        }
+        else if (yRotation == 180)
+        {
+            isFacingRight = false;
+        }
+
         if (isDashing)
         {
             rb.gravityScale = 0f;
             rb.linearVelocityY = 0f;
             animator.SetFloat("yVelocity", 0f);
-            if (spriteRenderer.flipX == false)
+            if (isFacingRight)
                 rb.linearVelocityX = dashForce;
             else
                 rb.linearVelocityX = -dashForce;
@@ -133,10 +140,7 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("xVel", Mathf.Abs(Mathf.FloorToInt(rb.linearVelocityX)));
         animator.SetFloat("yVelocity", rb.linearVelocityY);
 
-        if (movementInputX > 0)
-            spriteRenderer.flipX = false;
-        else if (movementInputX < 0)
-            spriteRenderer.flipX = true;
+        Turn();
 
         if (isGrounded)
         {
@@ -148,21 +152,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void AlignHitbox()
+    private void Turn()
     {
-        if (attackHitbox != null)
-        {
-            Vector2 currentOffset = hitboxOffset;
-            if (spriteRenderer.flipX)
-                currentOffset.x *= -1f;
-            Debug.Log($"Aligning hitbox with offset {currentOffset}");
-            attackHitbox.transform.localPosition = currentOffset;
-        }
+        if (movementInputX > 0)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        else if (movementInputX < 0)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        cameraFollow.CallFlip();
     }
 
     public void OnAttack(InputValue value)
     {
-        AlignHitbox();
         animator.SetInteger("attackID", 0);
         animator.SetTrigger("attack");
     }
