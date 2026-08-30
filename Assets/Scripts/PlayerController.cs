@@ -58,8 +58,8 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator OnDash(InputValue value)
     {
-        // if (!canDash)
-        //     yield break;
+        if (!canDash)
+            yield break;
         isDashing = true;
         animator.SetInteger("actionID", 2);
         animator.SetTrigger("action");

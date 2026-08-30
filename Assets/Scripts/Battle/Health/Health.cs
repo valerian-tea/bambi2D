@@ -74,7 +74,7 @@ public class Health : MonoBehaviour
         spriteRenderer.color = isFlashing ? flashColor : originalColor;
     }
 
-    protected virtual void PlayHitAnimation(bool isFrontHit)
+    public virtual void PlayHitAnimation(bool isFrontHit)
     {
         if (animator == null)
             return;

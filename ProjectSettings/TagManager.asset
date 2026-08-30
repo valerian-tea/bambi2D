@@ -48,6 +48,9 @@ TagManager:
   - name: Enemy
     uniqueID: 703498591
     locked: 0
+  - name: Temple
+    uniqueID: 3088221021
+    locked: 0
   - name: Player
     uniqueID: 727268361
     locked: 0
@@ -75,3 +78,4 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
+  m_MigratedRenderPipelines: []

@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 5941528245782645150}
   - component: {fileID: 2456871588820227212}
   - component: {fileID: 2809846148818845500}
-  - component: {fileID: 6415795306899362896}
+  - component: {fileID: 8588403922859736087}
   m_Layer: 3
   m_Name: Worm
   m_TagString: Enemy
@@ -272,7 +272,7 @@ MonoBehaviour:
   attackCooldown: 2
   attackRange: 2
   isAttacking: 0
---- !u!114 &6415795306899362896
+--- !u!114 &8588403922859736087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,12 +281,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7532370370075621660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62efaada0f3bd4569b5d2a9d54e1999e, type: 3}
+  m_Script: {fileID: 11500000, guid: 57145bc92c7c1431cb11005b372969e6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 40
   invincibilityDuration: 1
-  flashColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+  flashColor: {r: 1, g: 1, b: 1, a: 0.5}
   flashInterval: 0.5
   itemSprite: {fileID: 0}
   itemPrefab: {fileID: 0}

@@ -6,11 +6,16 @@ using UnityEngine.Tilemaps;
 public class FallingBlock : MonoBehaviour
 {
     public Tilemap groundTilemap;
+    public LayerMask groundLayer;
 
     private Rigidbody2D rb;
     private bool isFalling = false;
     private Vector3Int[] supportPositions;
     private Digger digger;
+    private bool isGrounded = false;
+
+    [SerializeField]
+    private float groundCheckRadius = 0.2f;
 
     void Start()
     {
@@ -31,6 +36,19 @@ public class FallingBlock : MonoBehaviour
     private void OnDisable()
     {
         Digger.OnDigAction -= CheckSupport;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!isFalling)
+            return;
+
+        isGrounded = Physics2D.OverlapCircle(transform.position, groundCheckRadius, groundLayer);
+
+        if (isGrounded)
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+        }
     }
 
     private void TriggerFall()
