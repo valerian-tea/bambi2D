@@ -7,12 +7,20 @@ public class FadeWithMovement : MonoBehaviour
     public Collider2D fadeCollider;
     private SpriteRenderer spriteRenderer;
 
+    [Header("Fade")]
+    [Tooltip("Color to blend the sprite towards as the player moves across the collider.")]
+    public Color targetColor = Color.black;
+
+    private Color initialColor;
+
     private float leftPoint;
     private float rightPoint;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            initialColor = spriteRenderer.color;
         leftPoint = Mathf.FloorToInt(fadeCollider.bounds.min.x);
         rightPoint = Mathf.FloorToInt(fadeCollider.bounds.max.x);
     }
@@ -26,12 +34,7 @@ public class FadeWithMovement : MonoBehaviour
 
         float progress = Mathf.InverseLerp(leftPoint, rightPoint, playerX);
 
-        // Invert progress so moving right (1) decreases alpha, moving left (0) increases it
-        float alpha = 1f - progress;
-
-        // Apply the new alpha to the sprite color
-        Color currentColor = spriteRenderer.color;
-        currentColor.a = alpha;
-        spriteRenderer.color = currentColor;
+        Color blended = Color.Lerp(initialColor, targetColor, progress);
+        spriteRenderer.color = blended;
     }
 }

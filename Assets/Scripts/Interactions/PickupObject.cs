@@ -14,25 +14,21 @@ public class PickupObject : MonoBehaviour
     private Collider2D carriedCollider;
     private SpriteRenderer carriedSprite;
     private Rigidbody2D carriedRb;
+    private Animator animator;
 
     void Start()
     {
         playerSprite = GetComponent<SpriteRenderer>();
         input = GetComponent<PlayerInput>();
-    }
-
-    void FixedUpdate()
-    {
-        // if (mouth.childCount > 0)
-        // {
-        //     AlignItem();
-        // }
+        animator = GetComponent<Animator>();
     }
 
     public void OnCrouch(InputValue value)
     {
         if (mouth.childCount == 0)
+        {
             TryPickup();
+        }
         else
             Drop();
     }
@@ -61,6 +57,8 @@ public class PickupObject : MonoBehaviour
         if (best == null)
             return;
 
+        PlayCrouchAnimation();
+
         carriedObject = best.gameObject;
         carriedCollider = carriedObject.GetComponent<Collider2D>();
         carriedSprite = carriedObject.GetComponent<SpriteRenderer>();
@@ -80,7 +78,7 @@ public class PickupObject : MonoBehaviour
 
     private void Drop()
     {
-        // Destroy(carriedObject);
+        PlayCrouchAnimation();
         carriedRb.simulated = true;
         carriedCollider.isTrigger = false;
         carriedObject.transform.SetParent(null);
@@ -90,6 +88,12 @@ public class PickupObject : MonoBehaviour
             variableStorage.SetValue("$hasBone", false);
             Debug.Log("Dropped the bone and updated $hasBone to 0.");
         }
+    }
+
+    private void PlayCrouchAnimation()
+    {
+        animator.SetInteger("actionID", 3);
+        animator.SetTrigger("action");
     }
 
     // private void AlignItem()

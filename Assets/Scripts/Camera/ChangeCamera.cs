@@ -11,7 +11,6 @@ public class ChangeCamera : MonoBehaviour
 
     private int inactivePriority = 1;
 
-    // Support for 2D projects if needed
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && triggerCamera != null)

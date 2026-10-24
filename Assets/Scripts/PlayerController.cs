@@ -16,20 +16,27 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private LayerMask groundLayer;
+    public bool isFacingRight = true;
 
     private Rigidbody2D rb;
     private float movementInputX;
+    private float movementInputY;
     private Animator animator;
     private PlayerInput input;
     private bool isMovementEnabled = true;
-    public bool isFacingRight = true;
+    private PlatformDropDown platformDropDown;
 
     [Header("Camera Settings")]
     public CameraFollow cameraFollow;
 
     [Header("Jump Settings")]
+    [SerializeField]
+    private float coyoteTimeMax = 0.15f;
+
     private bool isGrounded;
     private bool wasGrounded;
+
+    private float coyoteTimer;
 
     [Header("Dash Settings")]
     private float originalGravity;
@@ -49,11 +56,13 @@ public class PlayerController : MonoBehaviour
         input = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
         originalGravity = rb.gravityScale;
+        platformDropDown = GetComponent<PlatformDropDown>();
     }
 
     public void OnMove(InputValue value)
     {
         movementInputX = value.Get<Vector2>().x;
+        movementInputY = value.Get<Vector2>().y;
     }
 
     public IEnumerator OnDash(InputValue value)
@@ -72,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (isGrounded)
+        if (isGrounded || (!isGrounded && coyoteTimer > 0f))
         {
             Jump();
         }
@@ -83,6 +92,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocityY = jumpForce;
         animator.SetInteger("actionID", 0);
         animator.SetTrigger("action");
+        coyoteTimer = 0f;
     }
 
     bool CheckIfGrounded()
@@ -97,6 +107,7 @@ public class PlayerController : MonoBehaviour
         if (!isMovementEnabled)
         {
             movementInputX = 0f;
+            movementInputY = 0f;
         }
 
         float yRotation = transform.eulerAngles.y;
@@ -132,6 +143,15 @@ public class PlayerController : MonoBehaviour
 
         bool isGrounded = CheckIfGrounded();
 
+        if (isGrounded)
+        {
+            coyoteTimer = coyoteTimeMax;
+        }
+        else
+        {
+            coyoteTimer = Mathf.Max(0f, coyoteTimer - Time.fixedDeltaTime);
+        }
+
         if (movementInputX != 0)
             rb.linearVelocityX = movementInputX * speed;
         else
@@ -149,6 +169,11 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isWalking", true);
             else
                 animator.SetBool("isWalking", false);
+
+            if (movementInputY < 0)
+            {
+                platformDropDown.DropDown();
+            }
         }
     }
 
@@ -176,6 +201,7 @@ public class PlayerController : MonoBehaviour
     {
         isMovementEnabled = false;
         input.DeactivateInput();
+        Debug.Log("Player movement stopped.");
     }
 
     public void StartMovement()

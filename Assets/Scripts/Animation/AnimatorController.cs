@@ -43,14 +43,28 @@ public class AnimatorController : MonoBehaviour
     }
 
     [YarnCommand("fade_sprite")]
-    public void ShowSprite(float targetAlpha)
+    public void FadeSprite(float targetAlpha)
     {
-        StartCoroutine(FadeSpriteAlpha(targetAlpha));
+        if (spriteRenderer != null)
+        {
+            StartCoroutine(FadeSpriteAlpha(spriteRenderer, targetAlpha));
+        }
     }
 
-    private IEnumerator FadeSpriteAlpha(float targetAlpha)
+    [YarnCommand("fade_child_sprites")]
+    public void FadeChildSprite(float targetAlpha)
     {
-        float startValue = spriteRenderer.color.a;
+        SpriteRenderer[] childSpriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+
+        foreach (SpriteRenderer childSpriteRenderer in childSpriteRenderers)
+        {
+            StartCoroutine(FadeSpriteAlpha(childSpriteRenderer, targetAlpha));
+        }
+    }
+
+    private IEnumerator FadeSpriteAlpha(SpriteRenderer targetSpriteRenderer, float targetAlpha)
+    {
+        float startValue = targetSpriteRenderer.color.a;
         float timeElapsed = 0f;
         float fadeDuration = 1.0f; // Duration of the fade effect in seconds
 
@@ -59,22 +73,22 @@ public class AnimatorController : MonoBehaviour
             timeElapsed += Time.deltaTime;
             float newAlpha = Mathf.Lerp(startValue, targetAlpha, timeElapsed / fadeDuration);
             Color newColor = new Color(
-                spriteRenderer.color.r,
-                spriteRenderer.color.g,
-                spriteRenderer.color.b,
+                targetSpriteRenderer.color.r,
+                targetSpriteRenderer.color.g,
+                targetSpriteRenderer.color.b,
                 newAlpha
             );
-            spriteRenderer.color = newColor;
+            targetSpriteRenderer.color = newColor;
             yield return null;
         }
 
         // Ensure the final alpha value is set
         Color finalColor = new Color(
-            spriteRenderer.color.r,
-            spriteRenderer.color.g,
-            spriteRenderer.color.b,
+            targetSpriteRenderer.color.r,
+            targetSpriteRenderer.color.g,
+            targetSpriteRenderer.color.b,
             targetAlpha
         );
-        spriteRenderer.color = finalColor;
+        targetSpriteRenderer.color = finalColor;
     }
 }
