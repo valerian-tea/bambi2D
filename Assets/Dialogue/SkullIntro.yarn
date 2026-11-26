@@ -38,7 +38,7 @@ title: DigDown
 <<endonce>>
 ===
 
-title: SkullIntro
+title: XolotlIntro
 ---
 <<once>>
     ???: Who goes there?
@@ -68,7 +68,7 @@ title: SkullIntro
     <<hide_fire Fire>>
     <<fade_light XolotlLight 1>>
     ???: My name is Xolotl. This place you've found yourself in is my temple. Or rather, what remains of it.
-    Xolotl: I suggest you turn back, small one. This is no place to wander alone.
+    Xolotl: I suggest you turn back. This is no place to wander.
     <<wait 1.0>>
     <<set_animation Skull 2>>
     Xolotl: (Can it understand me?)
@@ -89,15 +89,25 @@ title: SkullIntro
     Xolotl: What have you lost?
     <<set_animation Dog 2>>
     <<wait 1.0>>
+    <<set_animation Dog 1>>
     Xolotl: ...
+    Xolotl: Fine, don't tell me. 
     <<set_animation Skull 0>>
-    Xolotl: Well, worry not. I can help you find it. As soon as you help me with one small favor, that is.
+    Xolotl: Well, I can't do much for you anyways, I'm afraid. I've been confined to this pesky form that limits my powers.
+    Xolotl: If the orcs and knights who've stumbled here couldn't do it, I don't see what you could do. Turn around now.
+    <<set_animation Dog 1>>
+    <<wait 1.0>>
+    <<set_animation Skull 2>>
+    Xolotl: What? Don't be preposterous, there's no way-
+    <<set_animation Skull 0>>
+    <<set_animation Dog 1>>
+    <<wait 1.0>>
+    Xolotl: You say you can fit into tight places? And you're very good at fetching things?
     <<set_animation Dog 0>>
     <<wait 1.0>>
-    Xolotl: Come with me.
-    <<play_timeline T_Pit>>
+    Xolotl: ...Fine then. Look here.
     <<set $hasMetSkull = true>>
-    <<destroy_item Commands SkullIntro>>
+    <<jump FetchBone>>
 <<endonce>>
 ===
 
@@ -114,13 +124,12 @@ title: OpenWall1
 title: FetchBone
 ---
 <<once>>
-    Xolotl: Er, so--I need you to fetch my bones.
-    //optional: sound effect or dog cock head- confused
+    <<set_animation Dog 5>>
     <<wait 1.0>>
     <<enable_UI Commands FireMap>>
-    Xolotl: Long ago, certain enemies of mine scattered my bones all over this domain.
+    Xolotl: Long ago, my enemies scattered my bones all over this domain.
     Xolotl: I've managed to recoup most of them over the years, but a few have remained in the clutches of pesky tomb raiders, just out of my reach.
-    Xolotl: Find my missing bones and drop them in this pit.
+    Xolotl: If you can fetch my missing bones for me and drop them in this pit, then I can finally break out of this tiresome form and tap into my true power. 
     Xolotl: Lucky for both of us, they're my smallest bones, so they should be doable for a being of your... stature.
     <<disable_UI Commands FireMap>>
 <<endonce>>
@@ -132,11 +141,11 @@ title: BonesMap
     <<set $numBones = dec($numBones)>>
     <<set $hasBone = false>>
     <<if $numBones == 2>>
-        <<destroy_item Commands Phalange>>
+        <<destroy_object Commands Phalange>>
     <<elseif $numBones == 1>>
-        <<destroy_item Commands Disc>>
+        <<destroy_object Commands Disc>>
     <<else>>
-        <<destroy_item Commands Horn>>
+        <<destroy_object Commands Horn>>
     <<endif>>
     // <<set_animation Xolotl 2>>
     Xolotl: Ah, I feel my power returning.
@@ -146,6 +155,11 @@ title: BonesMap
 Xolotl: There are still {$numBones} bones left to find.
 <<disable_UI Commands FireMap>>
 
+===
+
+title: Bone1Block
+---
+Xolotl: I saw the thief run off to the left! Let's go after her!
 ===
 
 title: Bone1Start
@@ -165,8 +179,8 @@ title: Bone1Start
 title: Bone1Start2
 ---
 <<once>>
-    Xolotl: It got away...
-    Xolotl: You caught it by surprise, so it may have dropped a bone somewhere.
+    Xolotl: She got away...
+    Xolotl: You caught her by surprise, so she may have dropped a bone somewhere.
 <<endonce>>
 ===
 
@@ -192,7 +206,8 @@ title: Bone1After
     Xolotl: You found it! I will meet you back at the pit.
     [i]Press C to pick up.[/i]
     <<set $hasBone= true>>
-    <<fade_child_sprites Xolotl_Dig 0>>
+    <<destroy_object Commands Xolotl_Dig>>
+    <<destroy_object Commands Bone1Block>>
 <<endonce>>
 ===
 

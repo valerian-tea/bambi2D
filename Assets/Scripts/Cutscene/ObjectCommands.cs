@@ -19,10 +19,10 @@ public class ObjectCommands : MonoBehaviour
         item.SetActive(false);
     }
 
-    [YarnCommand("destroy_item")]
-    public void DestroyItem(GameObject item)
+    [YarnCommand("destroy_object")]
+    public void DestroyObject(GameObject item)
     {
         Destroy(item);
-        Debug.Log($"Destroyed item: {item.name}");
+        Debug.Log($"Destroyed object: {item.name}");
     }
 }

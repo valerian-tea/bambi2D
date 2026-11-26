@@ -96,16 +96,6 @@ public class PickupObject : MonoBehaviour
         animator.SetTrigger("action");
     }
 
-    // private void AlignItem()
-    // {
-    //     Vector2 currentOffset = mouthOffset;
-    //     if (playerSprite.flipX)
-    //         currentOffset.x *= -1f;
-    //     Debug.Log($"Aligning item to mouth with offset {currentOffset}");
-    //     carriedSprite.flipX = playerSprite.flipX;
-    //     carriedObject.transform.localPosition = currentOffset;
-    // }
-
     void OnDrawGizmosSelected()
     {
         if (mouth != null)

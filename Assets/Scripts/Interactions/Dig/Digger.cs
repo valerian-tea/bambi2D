@@ -10,20 +10,20 @@ public class Digger : MonoBehaviour
     public Tilemap groundTilemap;
 
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
     public static event Action OnDigAction;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void OnSideDig(InputValue value)
     {
         // animator.SetTrigger("digSide");
         Vector3Int digCoordinate;
-        if (spriteRenderer.flipX) // Facing left
+        bool isFacingLeft = transform.eulerAngles.y > 90f && transform.eulerAngles.y < 270f;
+
+        if (isFacingLeft) // Facing left
         {
             digCoordinate = new Vector3Int(
                 Mathf.FloorToInt(this.transform.position.x - 1),
